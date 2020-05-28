@@ -1,11 +1,19 @@
-const express = require("express"); //Express Framework
-const router = express.Router();
+//Validation
+function signup() {
+	let username = form.children[0].value;
 
-//const dbAccounts = require("../models/dbAccounts.js"); //Accounts Database Route
+	if (username == '') {
+		$('input:first-child').attr('placeholder', 'Cannot Be Empty');
+	}
+	if (password == '') {
+		$('input:nth-child(2)').attr('placeholder', 'Cannot Be Empty');
+	}
 
-router.post("/", async (req, res) => {
-    let responseCode = await dbAccounts.createAccount(req);
-    res.sendStatus(responseCode).send(); //Appropriate Response Code sent back to user
-  });
-  
-  module.exports = router;
+	if (username != '' && password != '') {
+		try {
+			console.log('works');
+		} catch {
+			console.log('error');
+		}
+	}
+}

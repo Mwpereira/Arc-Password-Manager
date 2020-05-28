@@ -8,27 +8,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" href="../assets/css/index.css" rel="stylesheet">
-    <script type="text/javascript" src="../scripts/index.js"></script>
+    <script type="text/javascript" src="../models/signup.js"></script>
 </head>
 
 <body>
     <div class="container">
         <div class="title">
-            <p>Willow</p>
-        </div>
-        <div class="details">
-            <p>Note: Cannot edit any of these settings after account creation, one Willow Password Manager account per machine user for the highest protection.</p>
+            <center>Arc</center>
         </div>
         <div class="validation-block">
-            <input class="input-bar" type="text" name="username" placeholder="Username">
-            <input class="input-bar" type="password" name="password" placeholder="Password">
-            <input class="input-bar" type="password" name="confirm-password" placeholder="Confirm Password">
-            <input class="input-bar" type="text" name="salt-level" placeholder="Salt Level (0-10)">
-            <input type="submit" class="action-btn" value="Complete">
-        </div>
-        <div id="actions">
-            <input class="action-btn" id="loginR-btn" value="Already created an account? Login" type="submit"
-                onclick="javascript:location.href='login.html'">
+            <form id="signup-form">
+                <input class="input-bar" type="text" name="username" placeholder="Username">
+                <input class="input-bar" type="password" name="password" placeholder="Password">
+                <input class="input-bar" type="password" name="confirm-password" placeholder="Confirm Password">
+                <input class="input-bar" type="text" name="salt-level" placeholder="Salt Level (0-10)">
+                <input type="submit" class="action-btn" id="register" value="Register">
+            </form>
+            <div id="actions">
+                <input class="action-btn" id="loginArc-btn" value="Already created an account? Login" type="submit"
+                    onclick="javascript:location.href='login.html'">
+            </div>
         </div>
     </div>
 </body>

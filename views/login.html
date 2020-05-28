@@ -4,27 +4,28 @@
 <html lang="en-US">
 
 <head>
-    <title>Login</title>
+    <title>Arc</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" href="../assets/css/index.css" rel="stylesheet">
-    <script type="text/javascript" src="../scripts/index.js"></script>
+    <script type="text/javascript" src="../models/login.js"></script>
 </head>
 
 <body>
     <div class="container">
-
         <div class="title">
-            <p>Willow</p>
+            <center>Arc</center>
         </div>
         <div class="validation-block">
-            <input class="input-bar" type="text" name="username" placeholder="Username">
-            <input class="input-bar" type="password" name="password" placeholder="Password">
-            <input class="input-bar" type="password" name="confirm-password" placeholder="Confirm Password">
-        </div>
-        <div id="actions">
-            <input class="action-btn" id="loginR-btn" value="Already created an account? Login" type="submit"
-                onclick="javascript:location.href='login.html'">
+            <form id="login-form">
+                <input class="input-bar" type="text" name="username" placeholder="Username">
+                <input class="input-bar" type="password" name="password" placeholder="Password">
+                <input type="submit" class="action-btn" id="login" value="Login">
+            </form>
+            <div id="actions">
+                <input class="action-btn" id="signupArc-btn" value="Need to create an account? Sign up" type="submit"
+                    onclick="javascript:location.href='signup.html'">
+            </div>
         </div>
     </div>
 </body>

@@ -1,23 +1,28 @@
-const express = require("express"); //Express Framework
-const router = express.Router();
+let form = document.getElementsByTagName('form')[0];
 
-//const dbAccounts = require("../models/dbAccounts.js"); //Accounts Database Route
-
-router.post("/", async (req, res) => {
-  let account = await dbAccounts.authorizeAccount(req);
-
-  if (account.statusCode == 200) {
-    const accessToken = jwt.sign(
-      {
-        email: req.body.email,
-        _id: account._id
-      },
-      process.env.ACCESS_TOKEN_SECRET
-    );
-    res.json({ accessToken });
-  } else {
-    res.sendStatus(account.statusCode);
-  }
+// Events
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (form.id == "login-form") login();
+    else if (form.id == "signup-form") signup();
 });
 
-module.exports = router;
+//Validation
+function login() {
+	let username = form.children[0].value;
+
+	if (username == '') {
+		$('input:first-child').attr('placeholder', 'Cannot Be Empty');
+	}
+	if (password == '') {
+		$('input:nth-child(2)').attr('placeholder', 'Cannot Be Empty');
+	}
+
+	if (username != '' && password != '') {
+		try {
+			console.log('works');
+		} catch {
+			console.log('error');
+		}
+	}
+}
