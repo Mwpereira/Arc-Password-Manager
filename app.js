@@ -9,8 +9,12 @@ function createWindow() {
   win = new BrowserWindow({
     width: 900,
     height: 700,
-    minWidth: 800,
-    minHeight: 600,
+    minWidth: 900,
+    minHeight: 700,
+    maxWidth: 900,
+    maxHeight: 700,
+    maximizable: false,
+    //frame: false,
     webPreferences: {
       nodeIntegration: true,
       //devTools: false,
@@ -18,8 +22,7 @@ function createWindow() {
   })
 
   // and load the index.html of the app.
-  win.loadFile("./views/login.html");
-  win.maximize();
+  win.loadFile("./views/index.html");
   //win.removeMenu();
 
 

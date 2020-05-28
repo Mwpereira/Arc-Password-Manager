@@ -1,0 +1,23 @@
+{
+  "name": "arc-password-manager",
+  "version": "1.0.0",
+  "description": "A cross-platform, password manager app with advanced security features.",
+  "main": "app.js",
+  "dependencies": {
+    "electron": "^9.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mwpereira/Arc-Password-Manager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mwpereira/Arc-Password-Manager/issues"
+  },
+  "homepage": "https://github.com/Mwpereira/Arc-Password-Manager#readme"
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<html lang="en-US">
+
+<head>
+    <title>Signup</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="../assets/css/index.css" rel="stylesheet">
+    <script type="text/javascript" src="../scripts/index.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <p>Arc Password Manager</p>
+        </div>
+        <div class="details">
+            <p>Note: Cannot edit any of these settings after account creation, one Arc-PM account per machine user for the highest protection.</p>
+        </div>
+        <div class="validation-block">
+            <input class="input-bar" type="text" name="username" placeholder="Username">
+            <input class="input-bar" type="password" name="password" placeholder="Password">
+            <input class="input-bar" type="password" name="confirm-password" placeholder="Confirm Password">
+            <input class="input-bar" type="text" name="salt-level" placeholder="Salt Level (0-10)">
+            <input type="submit" class="action-btn" value="Complete">
+        </div>
+        <div id="actions">
+            <input class="action-btn" id="loginR-btn" value="Already created an account? Login" type="submit"
+                onclick="javascript:location.href='login.html'">
+        </div>
+    </div>
+</body>
+
+</html>
