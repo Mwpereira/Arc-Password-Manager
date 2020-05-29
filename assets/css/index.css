@@ -7,6 +7,8 @@ body {
 	height: 100%;
 	overflow-x: hidden;
 	background-image: url('../img/background900.jpg');
+	background-repeat: no-repeat;
+	background-size: auto;
 }
 
 *,
@@ -28,7 +30,7 @@ body {
 .validation-block {
 	width: 22.5rem;
 	border-radius: 15px;
-	background-color: rgba(28, 28, 33, 0.91);
+	background-color: rgba(28, 28, 33, 0.92);
 	padding: 0.25rem 0.25rem;
 }
 
@@ -41,16 +43,16 @@ body {
 
 .title {
 	font-size: 72px;
-	color: white;
-	height: 100px;
+	height: 6rem;
+	color: white;	
 }
 
-.description,
-.details {
+.description {
 	font-weight: normal;
 	font-size: 20px;
+	font-style: italic;
+	height: 4rem;
 	color: white;
-	height: 100px;
 	font-family: 'Bitter';
 }
 
@@ -96,4 +98,60 @@ body {
 	font-family: 'Bitter';
 	color: white;
 	padding: 5px 5px;
+}
+
+::placeholder{
+    color: rgba(255, 255, 255, 0.479);
+    font-size: 20px;
+}
+
+#login-error-message{
+    color: red;
+    font-weight: bold;
+    font-size: 1.2rem;
+    font-family: 'Bitter';
+	margin-top: 0.5rem;
+	margin-left: 2rem;
+	display: none;
+	padding-bottom: 0.5rem;
+}
+
+#signup-error-message{
+    color: red;
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: 'Bitter';
+	margin-top: 0.5rem;
+	margin-left: 1rem;
+	display: none;
+	padding-bottom: 0.5rem;
+}
+
+#password-match-error{
+    color: red;
+    font-weight: bold;
+    font-size: 1.2rem;
+    font-family: 'Bitter';
+	margin-top: 0.5rem;
+	margin-left: 4.5rem;
+	display: none;
+	padding-bottom: 0.5rem;
+}
+
+#field-empty{
+    color: red;
+    font-weight: bold;
+    font-size: 1.2rem;
+    font-family: 'Bitter';
+	margin-top: 0.5rem;
+	margin-left: 3.8rem;
+	display: none;
+	padding-bottom: 0.5rem;
+}
+
+@media (min-width: 900px), (min-height: 700px) {
+	html,
+	body {
+		background-image: url('../img/background1920.jpg');
+	}
 }

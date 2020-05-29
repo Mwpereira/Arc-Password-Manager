@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" href="../assets/css/index.css" rel="stylesheet">
-    <script type="text/javascript" src="../models/login.js"></script>
 </head>
 
 <body>
@@ -16,18 +15,25 @@
         <div class="title">
             <center>Arc</center>
         </div>
+        <!-- Validation Block -->
         <div class="validation-block">
             <form id="login-form">
-                <input class="input-bar" type="text" name="username" placeholder="Username">
-                <input class="input-bar" type="password" name="password" placeholder="Password">
-                <input type="submit" class="action-btn" id="login" value="Login">
+                <input autofocus class="input-bar" type="text" placeholder="Username">
+                <input class="input-bar" type="password" placeholder="Password">
+                <input class="action-btn" type="submit" value="Login">
             </form>
             <div id="actions">
-                <input class="action-btn" id="signupArc-btn" value="Need to create an account? Sign up" type="submit"
-                    onclick="javascript:location.href='signup.html'">
+                <input class="action-btn" id="loginArc-btn" value="Need to create an account? Sign up"
+                    onclick="javascript:location.href='signup.html'"></input>
             </div>
+            <p id="login-error-message">Username or Password Is Incorrect</p>
         </div>
     </div>
+    <!-- Scripts -->
+    <script type="text/javascript" src="../models/auth.js"></script>
+    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
 </body>
 
 </html>

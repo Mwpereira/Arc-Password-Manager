@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" href="../assets/css/index.css" rel="stylesheet">
-    <script type="text/javascript" src="../models/signup.js"></script>
 </head>
 
 <body>
@@ -16,20 +15,28 @@
         <div class="title">
             <center>Arc</center>
         </div>
+        <!-- Validation Block -->
         <div class="validation-block">
             <form id="signup-form">
-                <input class="input-bar" type="text" name="username" placeholder="Username">
+                <input autofocus class="input-bar" type="text" name="username" placeholder="Username">
                 <input class="input-bar" type="password" name="password" placeholder="Password">
                 <input class="input-bar" type="password" name="confirm-password" placeholder="Confirm Password">
-                <input class="input-bar" type="text" name="salt-level" placeholder="Salt Level (0-10)">
                 <input type="submit" class="action-btn" id="register" value="Register">
             </form>
             <div id="actions">
                 <input class="action-btn" id="loginArc-btn" value="Already created an account? Login" type="submit"
                     onclick="javascript:location.href='login.html'">
             </div>
+            <p id="signup-error-message">An Account With This Username Already Exists</p>
+            <p id="password-match-error">Passwords Do Not Match</p>
+            <p id="field-empty">Fields Cannot Be Left Empty</p>
         </div>
     </div>
+    <!-- Scripts -->
+    <script type="text/javascript" src="../models/auth.js"></script>
+    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
 </body>
 
 </html>

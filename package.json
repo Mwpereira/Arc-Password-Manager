@@ -4,6 +4,8 @@
   "description": "A cross-platform, password manager app with advanced security features.",
   "main": "app.js",
   "dependencies": {
+    "bcrypt": "^4.0.1",
+    "dotenv": "^8.2.0",
     "electron": "^9.0.0"
   },
   "devDependencies": {},
