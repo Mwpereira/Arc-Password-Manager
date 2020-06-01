@@ -70,6 +70,7 @@ h1 {
 	text-decoration: underline;
 	width: 275px;
 	height: 35px;
+  background-color: red;
 }
 
 .validation-form {

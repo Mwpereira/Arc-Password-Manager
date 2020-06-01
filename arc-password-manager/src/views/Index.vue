@@ -1,7 +1,5 @@
 <template>
 	<div class="home">
-		<!--img alt="Arc logo" src="../assets/logo.png">
-    <img alt="background" src="../assets/background900.jpg"-->
 		<h1>Arc</h1>
 		<h2>Keep Yourself Safe.<br />Secure, Advanced, and Customizable Software at Your Service.</h2>
 		<span>
