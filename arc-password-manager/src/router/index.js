@@ -1,5 +1,8 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from "../views/Home";
+import Information from "../views/Information";
+import Settings from "../views/Settings";
 
 Vue.use(VueRouter)
 
@@ -20,9 +23,28 @@ Vue.use(VueRouter)
       component: () => import("../views/Signup.vue"),
     },
     {
-      path: "/newUser",
+      path: "/newuser",
       name: "NewUser",
       component: () => import("../views/NewUser.vue"),
+    },
+    {
+      path: "/main",
+      name: "Main",
+      component: () => import("../views/Main.vue"),
+      children: [
+        {
+          path: "home",
+          component: Home
+        },
+        {
+          path: "information",
+          component: Information
+        },
+        {
+          path: "settings",
+          component: Settings
+        }
+      ]
     }
 ]
 

@@ -25,11 +25,15 @@ body {
   height: 100%;
 }
 
+img > .logo{
+	background-image: url("./assets/logo.png");
+}
+
 h1 {
 	font-family: 'Varela Round', sans-serif;
 	font-size: 72px;
-	height: 6rem;
 	color: white;
+	cursor: default;
 }
 
 .input-bar {
@@ -54,8 +58,8 @@ h1 {
 	height: 50px;
 	outline: none;
 	font-size: large;
-	cursor: pointer;
 	margin: 10px;
+	cursor: pointer;
 }
 
 #actions {
@@ -68,9 +72,9 @@ h1 {
 	color: white;
 	font-size: 16px;
 	text-decoration: underline;
-	width: 275px;
-	height: 35px;
-  background-color: red;
+	width: 20rem;
+	height: 2rem;
+	text-align: center;
 }
 
 .validation-form {
@@ -79,7 +83,7 @@ h1 {
 	background-color: rgba(28, 28, 33, 0.92);
 	padding: 0.25rem 0.25rem;
 
-  display: flex;
+	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;

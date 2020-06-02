@@ -24,7 +24,7 @@ export default {
 		};
 	},
 	methods: {
-		async authorizeAccount() {
+	async authorizeAccount() {
     let form = document.getElementsByTagName('form')[0];
 
 	let username = form.children[0].value;
@@ -52,7 +52,6 @@ export default {
 		//	$('#login-error-message').css('display', 'block');
 		}
 	}
-
     }
     }
 }

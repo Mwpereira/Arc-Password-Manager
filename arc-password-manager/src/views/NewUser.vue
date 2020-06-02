@@ -5,11 +5,11 @@
 
         <span class="slideshow-container">
 
-            <input class="close-btn" value="X" onclick="javascript:location.href='/home'" />
+            <input class="close-btn" value="X" onclick="javascript:location.href='/main/home'" />
 		
             <span class="images fade">
 			<img src="../assets/padlock.png" style="width:100%" />
-			<div class="text">Advanced libraries and alogirthms used to keep your accounts and data safe.</div>
+			<div class="text">Advanced libraries and alogirthms used to keep your accounts and data safe, with your access only.</div>
             </span>
 
             <span class="images fade">
@@ -51,11 +51,9 @@ export default {
         }
 	},
 	methods: {
-        // Next/previous controls
         plusSlides(n) {
             this.showImages(slideIndex += n);
         },
-        // Thumbnail image controls
         currentSlide(n) {
             this.showImages(slideIndex = n);
         },
@@ -96,6 +94,10 @@ div {
     overflow: hidden;
 }
 
+div > .text{
+	cursor: default;
+}
+
 h1{
     padding: 3rem;
 }
@@ -113,8 +115,8 @@ h1{
 	outline: none;
 	font-size: 12px;
 	cursor: pointer;
-	right: 2rem;
-    top: 1%;
+	right: 1rem;
+	top: 2%;
 }
 
 .slideshow-container {
