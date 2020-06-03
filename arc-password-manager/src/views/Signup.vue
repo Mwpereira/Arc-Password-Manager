@@ -44,6 +44,8 @@ export default {
 						const hashedPassword = await bcrypt.hashSync(password, salt);
 
 						localStorage.setItem(username, hashedPassword);
+						localStorage.setItem('salt', '10')
+						localStorage.setItem('adEnabled', 'true')
 
                         window.location.href = '/login';
                         

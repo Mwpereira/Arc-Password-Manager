@@ -34,6 +34,7 @@ div {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	height: 90%;
 }
 
 h1 {
@@ -54,7 +55,7 @@ img {
 }
 
 #logo {
-	margin-top: 3rem;
+	margin-top: 0rem;
 	width: 10rem;
 	cursor: default;
 }

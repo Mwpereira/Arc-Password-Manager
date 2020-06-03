@@ -38,13 +38,14 @@ div {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-items: space-between;
+	align-items: center;
 	text-align: center;
 	overflow: hidden;
 	border-bottom: 3px solid;
     border-image-slice: 1;
     border-width: 5px;
     border-image-source: linear-gradient(to left, #ff9d00, #3ab1d5);
+	height: 9%;
 }
 
 span {
@@ -63,7 +64,7 @@ h2{
 	font-size: 30px;
 	color: black;
 	cursor: default;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
 .logo {
@@ -77,7 +78,7 @@ h2{
 	height: 2rem;
 	padding: 0.5rem;
 	cursor: pointer;
-	margin-top: 0.5rem;
+	margin-top: 0.4rem;
 }
 
 .information {
@@ -85,7 +86,7 @@ h2{
 	height: 2rem;
 	padding: 0.5rem;
 	cursor: pointer;
-	margin-top: 0.5rem;
+	margin-top: 0.4rem;
 }
 
 .settings {
@@ -93,7 +94,7 @@ h2{
 	height: 2rem;
 	padding: 0.5rem;
 	cursor: pointer;
-	margin-top: 0.5rem;
+	margin-top: 0.4rem;
 	margin-right: 0.5rem;
 }
 </style>

@@ -12,4 +12,8 @@ export default {
 
 <style scoped>
 
+div {
+  height: 90%;
+}	
+
 </style>

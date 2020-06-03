@@ -41,7 +41,13 @@ export default {
 		try {
 			if (localStorage.getItem(username) != null) {
 				if (await bcrypt.compare(password, localStorage.getItem(username))) {
-					window.location.href = '/newUser'; //USE IF STATEMENT HERE
+					if (localStorage.getItem('adEnabled') == "false"){
+						window.location.href  ='/main/home';	
+					}
+					else{
+						window.location.href = '/newUser'; //USE IF STATEMENT HERE
+					}
+					
 				} else {
 				//	$('#login-error-message').css('display', 'block');
 				}

@@ -16,7 +16,7 @@ protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({ width: 900, height: 700, webPreferences: {
+  win = new BrowserWindow({ width: 900, height: 700, minWidth: 900, minHeight: 755, webPreferences: {
     nodeIntegration: true
   } })
 
@@ -75,7 +75,6 @@ app.on('ready', async () => {
   createWindow()
 })
 
-// Exit cleanly on request from parent process in development mode.
 if (isDevelopment) {
   if (process.platform === 'win32') {
     process.on('message', data => {
