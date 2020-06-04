@@ -9,6 +9,7 @@
         v-model="username"
         placeholder="Username"
         minlength="3"
+        required
       />
       <input
         class="input-bar"
@@ -16,12 +17,14 @@
         v-model="password"
         placeholder="Password"
         minlength="7"
+        required
       />
       <input
         class="input-bar"
         type="password"
         v-model="confirmPassword"
         placeholder="Confirm Password"
+        required
       />
       <input type="submit" class="action-btn" id="register" value="Register" />
       <input
@@ -31,9 +34,9 @@
         onclick="javascript:location.href='/login'"
       />
     </form>
-    <p id="signup-error-message">An Account With This Username Already Exists</p>
-    <p id="password-match-error">Passwords Do Not Match</p>
-    <p id="field-empty">Fields Cannot Be Left Empty</p>
+    <p class="signup-error-message" v-if="signup-error-message">An Account With This Username Already Exists</p>
+    <p class="password-match-error" v-if="password-match-error">Passwords Do Not Match</p>
+    <p class="field-empty" v-if="field-empty">Fields Cannot Be Left Empty</p>
   </div>
 </template>
 

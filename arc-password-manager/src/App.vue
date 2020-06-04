@@ -5,11 +5,37 @@
 </template>
 
 <script>
-export default {};
+export default {
+	name: 'app',
+	data (){
+		return{
+			mode: ''
+		}
+	},
+	methods: {
+	toggle () {
+      if (this.mode === "dark") {
+		this.mode = "light";
+		localStorage.setItem("darkMode", false);
+      } else {
+		this.mode = "dark";
+		localStorage.setItem("darkMode", true);
+      }
+    }
+	}	
+};
 </script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+:root {
+	--font-color-primary: black;
+	--font-color-secondary: white;
+
+	--theme-primary: white;
+	--theme-secondary: rgb(35, 36, 43);
+}
 
 * {
   margin: 0;
@@ -23,6 +49,24 @@ body {
 
 #app {
   height: 100%;
+  background: #F3F3F3;
+  color: #15202B;
+  transition: background 0.3s ease-in-out;
+}
+
+#actions {
+	text-align: center;
+}
+
+#loginArc-btn,
+#signupArc-btn {
+	background-color: transparent;
+	color: white;
+	font-size: 16px;
+	text-decoration: underline;
+	width: 20rem;
+	height: 2rem;
+	text-align: center;
 }
 
 img > .logo{
@@ -44,12 +88,12 @@ h1 {
 	margin: 10px;
 	font-size: 24px;
 	font-family: 'Bitter';
-	color: white;
+	color: whitesmoke;
 	padding: 5px 5px;
 }
 
-.action-btn {
-	background-color: whitesmoke;
+.action-btn, .main-btn {
+	background-color: white;
 	color: black;
 	justify-content: center;
 	border: none;
@@ -60,21 +104,6 @@ h1 {
 	font-size: large;
 	margin: 10px;
 	cursor: pointer;
-}
-
-#actions {
-	text-align: center;
-}
-
-#loginArc-btn,
-#signupArc-btn {
-	background-color: transparent;
-	color: white;
-	font-size: 16px;
-	text-decoration: underline;
-	width: 20rem;
-	height: 2rem;
-	text-align: center;
 }
 
 .validation-form {

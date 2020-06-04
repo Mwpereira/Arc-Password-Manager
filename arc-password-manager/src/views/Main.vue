@@ -12,6 +12,7 @@ import Menu from '@/components/Menu';
 
 export default {
     name: "Main",
+    props: ['mode'],
     components: { Menu },
     data: () => {
     return {

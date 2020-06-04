@@ -2,7 +2,7 @@
 	<div class="menu">
 		<span>
 			<img class="logo" src="../assets/logo.png" style="" />
-			<h1>Arc</h1>
+			<h1>Arc</h1>		
 		</span>
         <h2></h2>
 		<span @submit.prevent="pageTitle">
@@ -16,6 +16,7 @@
 <script>
 export default {
 	name: 'Menu',
+	props: ['mode'],
 	data: () => {
         return {
             p: "",
@@ -28,9 +29,10 @@ export default {
 			this.$router.push(`${p}`);
         }
     },
+	mounted(){
+		this.pageSwitch('Home');
+	}
 };
-
-
 </script>
 
 <style scoped>
@@ -65,6 +67,7 @@ h2{
 	color: black;
 	cursor: default;
     margin-top: 0.5rem;
+	margin-left: 1rem;
 }
 
 .logo {

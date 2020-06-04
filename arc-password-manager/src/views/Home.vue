@@ -1,12 +1,16 @@
 <template>
   <div class="home">
-    <input class="action-btn" type="submit" value="+Add Account" v-on:click="addAccount" />
+    <Accounts />
+    <!--input class="main-btn" type="submit" value="+Add Account" v-on:click="addAccount" /-->
   </div>
 </template>
 
 <script>
+import Accounts from '@/components/Accounts';
+
 export default {
   name: "Home",
+  components: { Accounts },
   data: () => {
     return {};
   },

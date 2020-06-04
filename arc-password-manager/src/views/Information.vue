@@ -5,15 +5,16 @@
 		<p>Created By: Michael Pereira</p>
 		<p>Version: 1.0.0</p>
 		<span @submit.prevent="openLink">
-			<img type="submit" src="../assets/linkedin.png" v-on:click="openLink('https://www.linkedin.com/in/michael-pereira-0237a0193/')" />
-			<img type="submit" src="../assets/github.png" v-on:click="openLink('https://github.com/Mwpereira')" />
+			<img type="submit" class="idMwp" src="../assets/linkedin.png" v-on:click="openLink('https://www.linkedin.com/in/michael-pereira-0237a0193/')" />
+			<img type="submit" class="idMwp" src="../assets/github.png" v-on:click="openLink('https://github.com/Mwpereira')" />
 		</span>
 	</div>
 </template>
 
 <script>
 export default {
-    name: "Information",
+	name: "Information",
+	props: ['mode'],
     data: () => {
         return{
             url: '',
@@ -58,5 +59,10 @@ img {
 	margin-top: 0rem;
 	width: 10rem;
 	cursor: default;
+}
+
+.idMwp{
+	padding-right: 0.5rem;
+	padding-left: 0.5rem;
 }
 </style>
