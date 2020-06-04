@@ -42,6 +42,7 @@ h1 {
 	font-size: 100px;
 	color: black;
 	margin-bottom: 2rem;
+	text-align: center;
 }
 
 p {

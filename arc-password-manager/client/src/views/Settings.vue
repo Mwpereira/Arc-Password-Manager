@@ -165,10 +165,11 @@ p {
 #salt {
     align-self: center;
     width: 3rem;
-    margin-top: 2.5rem;
+    margin-top: 2.75rem;
     margin-left: 3rem;
     color: black;
     opacity: 1;
+    font-size: 22px;
 }
 
 #save {
@@ -214,6 +215,8 @@ p {
 
 .slidecontainer {
     width: 25%;
+    margin-top: 3rem;
+    margin-left: 2rem;
 }
 
 .slider {
