@@ -13,8 +13,6 @@ app.use(cors());
 const signup = require("./routes/signup.js");
 const login = require("./routes/login.js");
 
-const post = require("./routes/post.js");
-
 app.use("/signup", signup);
 app.use("/login", login);
 

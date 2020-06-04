@@ -1,9 +1,9 @@
 const mongodb = require("mongodb"); //MongoDB Package
 const bcrypt = require("bcrypt"); //Encryption Package
 
-const dbUserData = require("./arcUserData"); //UserData Database Route
+const arcUserData = require("./arcUserData"); //UserData Database Route
 
-class dbAccounts {
+class arcUserData {
     //Connect to the database and collection
     static async loadAccountsCollection() {
         const client = await mongodb.MongoClient.connect(process.env.DBURL, {
@@ -71,4 +71,4 @@ class dbAccounts {
     }
 }
 
-module.exports = dbAccounts;
+module.exports = arcUserData;

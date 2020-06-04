@@ -1,12 +1,12 @@
 const express = require("express"); //Express Framework
 const router = express.Router();
 
-const dbAccounts = require("../models/arcAccounts.js"); //Accounts Database Route
+const arcAccounts = require("../models/arcAccounts.js"); //Accounts Database Route
 
 const jwt = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
-    let account = await dbAccounts.authorizeAccount(req); //Login
+    let account = await arcAccounts.authorizeAccount(req); //Login
 
     if (account.statusCode == 200) {
         const accessToken = jwt.sign(

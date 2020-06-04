@@ -1,6 +1,6 @@
 const mongodb = require("mongodb"); //MongoDB Package
 
-class dbUserData {
+class arcUserData {
     //Connect to the database and collection to load user data
     static async loadUserDataCollection() {
         const client = await mongodb.MongoClient.connect(process.env.DBURL, {
@@ -87,4 +87,4 @@ class dbUserData {
     }
 }
 
-module.exports = dbUserData;
+module.exports = arcUserData;
