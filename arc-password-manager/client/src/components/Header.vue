@@ -1,33 +1,41 @@
 <template>
-	<div class="menu">
+	<menu>
+	<div class="menu" :class="mode">
 		<span>
 			<img class="logo" src="../assets/logo.png" style="" />
-			<h1>Arc</h1>		
+			<h1>Arc</h1>
 		</span>
         <h2></h2>
 		<span @submit.prevent="pageTitle">
 			<img class="home" src="../assets/home.png"  v-on:click="pageSwitch('Home')" />
 			<img class="information" src="../assets/i.png" v-on:click="pageSwitch('Information')" />
-			<img class="settings" src="../assets/settings.png" v-on:click="pageSwitch('Settings')" />
+			<img :mode="mode" class="settings" src="../assets/settings.png" v-on:click="pageSwitch('Settings')" />
 		</span>
 	</div>
+	</menu>
 </template>
 
 <script>
 export default {
 	name: 'Menu',
-	props: ['mode'],
-	data: () => {
-        return {
-            p: "",
-        };
-    },
+	data () {
+    return {
+      mode: 'light'
+		}
+	},
     methods: {
         pageSwitch(p){
             var title = document.getElementsByTagName("h2");
 			title[0].innerText = p;
 			this.$router.push(`${p}`);
-        }
+		},
+		toggle () {
+      if (this.mode === "dark") {
+        this.mode = "light"
+      } else {
+        this.mode = "dark"
+      }
+    }
     },
 	mounted(){
 		this.pageSwitch('Home');
@@ -36,6 +44,17 @@ export default {
 </script>
 
 <style scoped>
+
+menu {
+  background: white;
+  color: #15202B;;
+  transition: background 0.3s ease-in-out;
+}
+.dark menu {
+  background: #15202B;
+  color: white;
+}
+
 div {
 	display: flex;
 	flex-direction: row;
@@ -64,7 +83,6 @@ h1 {
 h2{
     font-family: 'Varela Round', sans-serif;
 	font-size: 30px;
-	color: black;
 	cursor: default;
     margin-top: 0.5rem;
 	margin-left: 1rem;

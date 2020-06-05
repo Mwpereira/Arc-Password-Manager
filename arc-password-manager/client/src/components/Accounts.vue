@@ -27,7 +27,7 @@ export default {
 div{
     width: 15rem;
     height: 100%;
-    background-color: white;
+    z-index: 99;
 }
 
 h2{
@@ -43,6 +43,8 @@ h2{
     flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;
+    height: 100%;
+    background-color: red;
 }
 
 </style>

@@ -1,25 +1,55 @@
 <template>
-    <v-app class="menu">
-    <Menu />
-    <v-content class="primary">
+    <v-app class="menu" :class="mode">
+    <Header :mode="mode" @toggle="('toggle')"  />
+    <v-content>
       <router-view />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Menu from '@/components/Menu';
+import Header from '@/components/Header';
 
 export default {
     name: "Main",
     props: ['mode'],
-    components: { Menu },
+    components: { Header },
     data: () => {
     return {
-      links: [{ icon: "mdi-home", text: "Home", route: "/main/home" },
-            { icon: "mdi-home", text: "Information", route: "/main/information" },
-            { icon: "mdi-home", text: "Settings", route: "/main/settings" } ]
+      mode: 'light',
     };
+  },
+  methods: {
+    toggle () {
+      if (this.mode === "dark") {
+		this.mode = "light";
+      } else {
+		this.mode = "dark";
+      }
+  } 
   }
 };
 </script>
+
+<style scoped>
+
+:root {
+	--font-color-primary: black;
+	--font-color-secondary: white;
+
+	--theme-primary: white;
+	--theme-secondary: rgb(35, 36, 43);
+}
+
+.menu{
+  color: #15202B;
+  transition: background 0.3s ease-in-out;
+}
+
+.dark {
+  background: #192734;
+  color: #E8E8E8;
+  background-color: red;
+}
+
+</style>

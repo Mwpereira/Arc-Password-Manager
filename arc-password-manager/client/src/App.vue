@@ -1,41 +1,18 @@
 <template>
-  <div id="app">
+  <div class="app">
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-	name: 'app',
-	data (){
-		return{
-			mode: ''
-		}
-	},
-	methods: {
-	toggle () {
-      if (this.mode === "dark") {
-		this.mode = "light";
-		localStorage.setItem("darkMode", false);
-      } else {
-		this.mode = "dark";
-		localStorage.setItem("darkMode", true);
-      }
-    }
-	}	
+	name: 'app'
 };
+
 </script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
-
-:root {
-	--font-color-primary: black;
-	--font-color-secondary: white;
-
-	--theme-primary: white;
-	--theme-secondary: rgb(35, 36, 43);
-}
 
 * {
   margin: 0;
@@ -47,7 +24,7 @@ body {
   height: 100vh;
 }
 
-#app {
+.app {
   height: 100%;
   background: #F3F3F3;
   color: #15202B;
@@ -78,6 +55,11 @@ h1 {
 	font-size: 72px;
 	color: white;
 	cursor: default;
+}
+
+.dark {
+  background: #192734;
+  color: #E8E8E8;
 }
 
 .input-bar {
