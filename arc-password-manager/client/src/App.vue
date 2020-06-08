@@ -17,6 +17,7 @@ export default {
 * {
   margin: 0;
   padding: 0;
+  cursor: default;
 }
 
 html,
@@ -54,7 +55,6 @@ h1 {
 	font-family: 'Varela Round', sans-serif;
 	font-size: 72px;
 	color: white;
-	cursor: default;
 }
 
 .dark {
@@ -72,6 +72,7 @@ h1 {
 	font-family: 'Bitter';
 	color: whitesmoke;
 	padding: 5px 5px;
+	cursor: text;
 }
 
 .action-btn, .main-btn {

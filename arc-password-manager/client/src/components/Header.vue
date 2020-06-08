@@ -2,14 +2,14 @@
 	<menu>
 	<div class="menu" :class="mode">
 		<span>
-			<img class="logo" src="../assets/logo.png" style="" />
+			<img class="logo" src="../assets/logo.png" />
 			<h1>Arc</h1>
 		</span>
         <h2></h2>
-		<span @submit.prevent="pageTitle">
-			<img class="home" src="../assets/home.png"  v-on:click="pageSwitch('Home')" />
+		<span @submit.prevent="pageSwitch">
+			<img class="home" src="../assets/home.png"  v-on:click="pageSwitch('Home')">
 			<img class="information" src="../assets/i.png" v-on:click="pageSwitch('Information')" />
-			<img :mode="mode" class="settings" src="../assets/settings.png" v-on:click="pageSwitch('Settings')" />
+			<img class="settings" src="../assets/settings.png" v-on:click="pageSwitch('Settings')" />	
 		</span>
 	</div>
 	</menu>
@@ -17,26 +17,30 @@
 
 <script>
 export default {
-	name: 'Menu',
-	data () {
-    return {
-      mode: 'light'
-		}
-	},
+	name: 'Header',
+	props: ["mode"],
+	components: {  },
+	data: () => {
+        return {
+            mode: "",
+            saltLevel: "",
+            adEnabled: "",
+        };
+    },
     methods: {
         pageSwitch(p){
-            var title = document.getElementsByTagName("h2");
+			var title = document.getElementsByTagName("h2");
 			title[0].innerText = p;
 			this.$router.push(`${p}`);
 		},
 		toggle () {
-      if (this.mode === "dark") {
-        this.mode = "light"
-      } else {
-        this.mode = "dark"
-      }
-    }
-    },
+    if (this.mode === "dark") {
+		this.mode = "light";
+    } else {
+		this.mode = "dark";
+		}
+		}
+	},
 	mounted(){
 		this.pageSwitch('Home');
 	}
@@ -44,7 +48,6 @@ export default {
 </script>
 
 <style scoped>
-
 menu {
   background: white;
   color: #15202B;;

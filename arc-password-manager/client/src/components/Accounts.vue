@@ -16,21 +16,39 @@ export default {
         };
     },
     methods: {
+        loadAccounts(){
+            if (sessionStorage.getItem('accounts') == undefined){
+               /* try{
+
+                }
+                catch{
+
+                }*/
+            }
+            else{
+              //  let accounts = sessionStorage.getItem('accounts');
+            }
+            this.displayAccounts();
+        },
+        displayAccounts(){            
+        }
     },
 	mounted(){
+        //this.loadAccounts();
 	}
 };
 </script>
 
 <style scoped>
-
 div{
-    width: 15rem;
+    width: 20%;
     height: 100%;
     z-index: 99;
+    background-color: red;
 }
 
 h2{
+    font-family: 'Varela Round', sans-serif;
     color: black;
     text-align: center;
     margin-top: 1rem;
@@ -44,7 +62,8 @@ h2{
     padding-left: 0;
     margin-bottom: 0;
     height: 100%;
-    background-color: red;
+    width: 100%;
+    background-color: white;
 }
 
 </style>

@@ -11,7 +11,7 @@
                         class="slider"
                         id="saltRange"
                         v-model="saltLevel"
-                        v-on:click="updateSalt"
+                        v-on:input="updateSalt"
                     />
                 </div>
                 <p type="number" id="salt">Null</p>
@@ -123,7 +123,7 @@ export default {
 		this.mode = "light";
         } else {
 		this.mode = "dark";
-        }
+        }this.$emit('update:toggle',this.mode);
   }
     },
     mounted() {

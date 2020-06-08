@@ -1,6 +1,6 @@
 <template>
     <v-app class="menu" :class="mode">
-    <Header :mode="mode" @toggle="('toggle')"  />
+    <Header />
     <v-content>
       <router-view />
     </v-content>
