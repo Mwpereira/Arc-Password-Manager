@@ -1,8 +1,13 @@
 <template>
 	<div class="accounts">
-        <li class="list-accounts">
+        <ul class="list-accounts">
+        <li>
         <h2>Accounts</h2>
         </li>
+        <li>
+        <h2>HimalLikesMen</h2>
+        </li>
+        </ul>
 	</div>
 </template>
 
@@ -43,9 +48,9 @@ export default {
 div{
     width: 20%;
     height: 100%;
-    z-index: 99;
-    background-color: red;
+    position: fixed;
 }
+
 
 h2{
     font-family: 'Varela Round', sans-serif;
@@ -55,9 +60,8 @@ h2{
 }
 
 .list-accounts{
-    display: -ms-flexbox;
+    display: flexbox;
     display: flex;
-    -ms-flex-direction: column;
     flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;

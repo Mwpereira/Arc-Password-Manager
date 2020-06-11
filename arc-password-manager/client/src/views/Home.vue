@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <Accounts />
+    <keep-alive>
+      <Accounts />
+    </keep-alive>
     <span class="form">
       <input @click="component = 'AddForm'" id="addAccount" class="main-btn" type="submit" value="+ Add Account" />   
       <component @eventname="clearComponent" :is="component"></component>
@@ -32,7 +34,7 @@ export default {
 
 <style scoped>
 div {
-  height: 90%;
+  height: calc(100vh-4rem);
   display: flex;
   flex-direction: row;
 	text-align: center;
@@ -42,6 +44,7 @@ div {
   display: flex;
   flex-direction: column;
 	text-align: center;
+  margin-left: 20%;
 }
 
 #addAccount{

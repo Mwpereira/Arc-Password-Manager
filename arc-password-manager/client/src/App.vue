@@ -1,12 +1,17 @@
 <template>
   <div class="app">
-    <router-view />
+    <router-view :mode="mode"/>
   </div>
 </template>
 
 <script>
 export default {
-	name: 'app'
+	name: 'app',
+	data () {
+		return {
+			mode: "light",
+		}
+	}
 };
 
 </script>
@@ -72,7 +77,6 @@ h1 {
 	font-family: 'Bitter';
 	color: whitesmoke;
 	padding: 5px 5px;
-	cursor: text;
 }
 
 .action-btn, .main-btn {

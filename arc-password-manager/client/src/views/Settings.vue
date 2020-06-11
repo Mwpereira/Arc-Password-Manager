@@ -123,8 +123,8 @@ export default {
 		this.mode = "light";
         } else {
 		this.mode = "dark";
-        }this.$emit('update:toggle',this.mode);
-  }
+        }this.$emit('toggle');
+        }
     },
     mounted() {
         this.loadSettings();
@@ -133,17 +133,6 @@ export default {
 </script>
 
 <style scoped>
-
-menu {
-  background: whitesmoke;
-  color: #15202B;;
-  transition: background 0.3s ease-in-out;
-}
-.dark menu {
-  background: #15202B;
-  color: white;
-}
-
 div {
     overflow: hidden;
     height: 90%;

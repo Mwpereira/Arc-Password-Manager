@@ -33,13 +33,6 @@ export default {
 			title[0].innerText = p;
 			this.$router.push(`${p}`);
 		},
-		toggle () {
-    if (this.mode === "dark") {
-		this.mode = "light";
-    } else {
-		this.mode = "dark";
-		}
-		}
 	},
 	mounted(){
 		this.pageSwitch('Home');
@@ -48,16 +41,6 @@ export default {
 </script>
 
 <style scoped>
-menu {
-  background: white;
-  color: #15202B;;
-  transition: background 0.3s ease-in-out;
-}
-.dark menu {
-  background: #15202B;
-  color: white;
-}
-
 div {
 	display: flex;
 	flex-direction: row;
@@ -69,7 +52,7 @@ div {
     border-image-slice: 1;
     border-width: 5px;
     border-image-source: linear-gradient(to left, #ff9d00, #3ab1d5);
-	height: 9%;
+	height: 4rem;
 }
 
 span {

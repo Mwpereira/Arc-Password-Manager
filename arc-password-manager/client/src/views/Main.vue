@@ -1,10 +1,8 @@
 <template>
-    <v-app class="menu" :class="mode">
-    <Header />
-    <v-content>
+    <div class="main">
+      <Header />
       <router-view />
-    </v-content>
-  </v-app>
+    </div>
 </template>
 
 <script>
@@ -20,36 +18,17 @@ export default {
     };
   },
   methods: {
-    toggle () {
-      if (this.mode === "dark") {
-		this.mode = "light";
-      } else {
-		this.mode = "dark";
-      }
-  } 
+ 
   }
 };
 </script>
 
 <style scoped>
-
-:root {
-	--font-color-primary: black;
-	--font-color-secondary: white;
-
-	--theme-primary: white;
-	--theme-secondary: rgb(35, 36, 43);
+div{
+  height: calc(100vh-4rem);
 }
 
-.menu{
-  color: #15202B;
-  transition: background 0.3s ease-in-out;
+.main{
+  height: 100vh;
 }
-
-.dark {
-  background: #192734;
-  color: #E8E8E8;
-  background-color: red;
-}
-
 </style>
