@@ -1,6 +1,6 @@
 <template>
     <menu>
-    <div class="settings" :class="mode">
+        <div class="settings" :class="mode">
             <span class="salt">
                 <h3 id="saltHeader">Salt Level:</h3>
                 <div @submit.prevent="updateSalt" class="slidecontainer">
@@ -18,8 +18,8 @@
             </span>
             <p style="margin-left: 3rem; margin-top: 1rem;">
                 Scale: 1-20
-                <br />Default/Recommended: 10 <br />Higher Salt Level = Greater Security &
-                Longer Encryption Time
+                <br />Default/Recommended: 10 <br />Higher Salt Level = Greater Security & Longer
+                Encryption Time
             </p>
             <span class="arc-ad">
                 <h3 id="adHeader">Arc Startup Ad:</h3>
@@ -30,24 +30,42 @@
             </span>
             <span class="darkmode">
                 <h3 id="themeHeader">Dark Mode:</h3>
-                <Toggle :mode="mode" @toggle="toggle" id="cbDarkMode" value="Enabled" v-model="cbDarkMode"/>
+                <Toggle
+                    :mode="mode"
+                    @toggle="toggle"
+                    id="cbDarkMode"
+                    value="Enabled"
+                    v-model="cbDarkMode"
+                />
             </span>
             <span class="buttons">
-            <input class="main-btn" id="save" type="submit" value="Save" v-on:click="saveSettings" />
-            <input class="main-btn" id="cancel" type="submit" value="Cancel" v-on:click="loadSettings" />
-        </span>  
-    </div>
+                <input
+                    class="main-btn"
+                    id="save"
+                    type="submit"
+                    value="Save"
+                    v-on:click="saveSettings"
+                />
+                <input
+                    class="main-btn"
+                    id="cancel"
+                    type="submit"
+                    value="Cancel"
+                    v-on:click="loadSettings"
+                />
+            </span>
+        </div>
     </menu>
 </template>
 
 <script>
-import Toggle from '@/components/Toggle';
+import Toggle from "@/components/Toggle";
 
 export default {
     name: "Settings",
     props: ["mode"],
     components: {
-        Toggle
+        Toggle,
     },
     data: () => {
         return {
@@ -73,7 +91,7 @@ export default {
             this.saltLevel = salt;
             slider.value = salt;
             output.innerHTML = slider.value;
-            
+
             if (adEnabled == "true") {
                 checkedValue.checked = true;
                 this.checkedValue = true;
@@ -95,8 +113,6 @@ export default {
             let adEnabled = this.ckAdEnabled;
             let darkMode = this.mode;
 
-            console.log(darkMode);
-
             if (salt != undefined) {
                 localStorage.setItem("salt", salt);
             }
@@ -105,7 +121,7 @@ export default {
                 localStorage.setItem("adEnabled", adEnabled);
             }
 
-            if (darkMode != undefined){
+            if (darkMode != undefined) {
                 localStorage.setItem("darkMode", darkMode);
             }
         },
@@ -117,14 +133,15 @@ export default {
                 output.innerHTML = this.value;
                 this.saltLevel = output.innerHTML;
             };
-        },  
-        toggle () {
-        if (this.mode === "dark") {
-		this.mode = "light";
-        } else {
-		this.mode = "dark";
-        }this.$emit('toggle');
-        }
+        },
+        toggle() {
+            if (this.mode === "dark") {
+                this.mode = "light";
+            } else {
+                this.mode = "dark";
+            }
+            this.$emit("toggle");
+        },
     },
     mounted() {
         this.loadSettings();
@@ -164,10 +181,10 @@ p {
     margin-top: 3rem;
 }
 
-.buttons{
+.buttons {
     display: flex;
     flex-direction: row;
-    align-items: center;   
+    align-items: center;
     float: right;
     margin: 2rem;
 }
@@ -215,7 +232,7 @@ p {
 }
 
 #themeHeader {
-    font-size: 22px;    
+    font-size: 22px;
     margin-left: 3rem;
     cursor: default;
 }
@@ -264,5 +281,4 @@ p {
     background: indigo;
     cursor: pointer;
 }
-
 </style>

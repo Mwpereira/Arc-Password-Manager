@@ -1,64 +1,61 @@
 <template>
-	<div class="accounts">
+    <div class="accounts">
         <ul class="list-accounts">
-        <li>
-        <h2>Accounts</h2>
-        </li>
-        <li>
-        <h2>HimalLikesMen</h2>
-        </li>
+            <li>
+                <h2>Accounts</h2>
+            </li>
+            <li>
+                <h2>Instagram</h2>
+            </li>
         </ul>
-	</div>
+    </div>
 </template>
 
 <script>
 export default {
-	name: 'Accounts',
-    props: ['mode'],
-	data: () => {
+    name: "Accounts",
+    props: ["mode"],
+    data: () => {
         return {
             p: "",
         };
     },
     methods: {
-        loadAccounts(){
-            if (sessionStorage.getItem('accounts') == undefined){
-               /* try{
+        loadAccounts() {
+            if (sessionStorage.getItem("accounts") == undefined) {
+                /* try{
 
                 }
                 catch{
 
                 }*/
-            }
-            else{
-              //  let accounts = sessionStorage.getItem('accounts');
+            } else {
+                //  let accounts = sessionStorage.getItem('accounts');
             }
             this.displayAccounts();
         },
-        displayAccounts(){            
-        }
+        displayAccounts() {},
     },
-	mounted(){
+    mounted() {
         //this.loadAccounts();
-	}
+    },
 };
 </script>
 
 <style scoped>
-div{
+div {
     width: 25%;
     position: relative;
 }
 
-
-h2{
-    font-family: 'Varela Round', sans-serif;
+h2 {
+    font-family: "Varela Round", sans-serif;
     color: black;
     text-align: center;
     margin-top: 1rem;
 }
 
-.list-accounts{
+.list-accounts {
     display: flexbox;
     display: flex;
     flex-direction: column;
@@ -68,5 +65,4 @@ h2{
     width: 100%;
     background-color: white;
 }
-
 </style>

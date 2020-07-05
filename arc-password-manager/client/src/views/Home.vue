@@ -1,57 +1,73 @@
 <template>
-  <div class="home">
-    <keep-alive>
-      <Accounts />
-    </keep-alive>
-    <span class="form">
-      <input @click="component = 'AddForm'" id="addAccount" class="main-btn" type="submit" value="+ Add Account" />   
-      <component @eventname="clearComponent" :is="component"></component>
-    </span>
-  </div>
+    <div class="home">
+        <keep-alive>
+            <Accounts />
+        </keep-alive>
+        <span class="form">
+            <span>
+                <input
+                    @click="component = 'AddForm'"
+                    id="addAccount"
+                    class="main-btn"
+                    type="submit"
+                    value="+ Add Account"
+                />
+                <input
+                    @click="component = 'AutoGenPass'"
+                    id="autoGenPass"
+                    class="main-btn"
+                    type="submit"
+                    value="+ Auto Generate Password"
+                />
+                <component @eventname="clearComponent" :is="component"></component>
+            </span>
+        </span>
+    </div>
 </template>
 
 <script>
-import Accounts from '@/components/Accounts';
-import AddForm  from '@/components/AddForm';
+import Accounts from "@/components/Accounts";
+import AddForm from "@/components/AddForm";
+import AutoGenPass from "@/components/AutoGeneratePassword";
 
 export default {
-  name: "Home",
-  components: { Accounts, AddForm },
-  data: () => {
-    return {
-      component: ''
-    };
-  },
-  methods: {
-    clearComponent(){
-      this.component = "";
-    }
-  },
-  mounted() {
-  }
+    name: "Home",
+    components: { Accounts, AddForm, AutoGenPass },
+    data: () => {
+        return {
+            component: "",
+        };
+    },
+    methods: {
+        clearComponent() {
+            this.component = "";
+        },
+    },
+    mounted() {},
 };
 </script>
 
 <style scoped>
 div {
-  display: flex;
-  flex-direction: row;
-	text-align: center;
-  background-color: red;
-  height: 100%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    height: 100%;
+    background-color: whitesmoke;
 }
 
-.form{
-  display: flex;
-  flex-direction: column;
-	text-align: center;
-  margin-left: 3%;
+#addAccount {
+    cursor: pointer;
+    position: relative;
+    margin-top: 1.5rem;
+    margin-left: 2rem;
 }
 
-#addAccount{
-  float: left;
-  cursor: pointer;
-  margin: 2rem;
-  position: absolute;
+#autoGenPass {
+    cursor: pointer;
+    position: relative;
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+    width: 15rem;
 }
 </style>

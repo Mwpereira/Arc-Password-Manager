@@ -1,31 +1,24 @@
 <template>
     <div class="main">
-      <Header />
-      <router-view class="rv" />
+        <Header />
+        <router-view />
     </div>
 </template>
 
 <script>
-import Header from '@/components/Header';
+import Header from "@/components/Header";
 
 export default {
     name: "Main",
-    props: ['mode'],
+    props: ["mode"],
     components: { Header },
     data: () => {
-    return {
-      mode: 'light',
-    };
-  },
-  methods: {
- 
-  }
+        return {
+            mode: "light",
+        };
+    },
+    methods: {},
 };
 </script>
 
-<style scoped>
-div{
-
-}
-
-</style>
+<style scoped></style>
