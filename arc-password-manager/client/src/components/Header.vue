@@ -42,12 +42,14 @@ export default {
 
 <style scoped>
 div {
+	position: relative;
+	width: 100%;
+	z-index: 99;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 	text-align: center;
-	overflow: hidden;
 	border-bottom: 3px solid;
     border-image-slice: 1;
     border-width: 5px;

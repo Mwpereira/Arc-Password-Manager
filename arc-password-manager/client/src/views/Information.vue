@@ -35,7 +35,7 @@ div {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	height: 90%;
+	margin-top: 7%;
 }
 
 h1 {

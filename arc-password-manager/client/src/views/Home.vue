@@ -34,17 +34,18 @@ export default {
 
 <style scoped>
 div {
-  height: calc(100vh-4rem);
   display: flex;
   flex-direction: row;
 	text-align: center;
+  background-color: red;
+  height: 100%;
 }
 
 .form{
   display: flex;
   flex-direction: column;
 	text-align: center;
-  margin-left: 20%;
+  margin-left: 3%;
 }
 
 #addAccount{

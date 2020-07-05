@@ -1,7 +1,7 @@
 <template>
     <div class="main">
       <Header />
-      <router-view />
+      <router-view class="rv" />
     </div>
 </template>
 
@@ -25,10 +25,7 @@ export default {
 
 <style scoped>
 div{
-  height: calc(100vh-4rem);
+
 }
 
-.main{
-  height: 100vh;
-}
 </style>
