@@ -43,16 +43,16 @@ export default {
 </script>
 
 <style scoped>
-div {
-    width: 25%;
-    position: relative;
-}
-
 h2 {
     font-family: "Varela Round", sans-serif;
     color: black;
     text-align: center;
     margin-top: 1rem;
+}
+
+.accounts {
+    background: green;
+    width: 40vh;
 }
 
 .list-accounts {
@@ -61,7 +61,7 @@ h2 {
     flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-color: white;
 }

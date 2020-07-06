@@ -3,8 +3,8 @@
         <keep-alive>
             <Accounts />
         </keep-alive>
-        <span class="form">
-            <span>
+        <span>
+            <span class="buttons">
                 <input
                     @click="component = 'AddForm'"
                     id="addAccount"
@@ -19,8 +19,8 @@
                     type="submit"
                     value="+ Auto Generate Password"
                 />
-                <component @eventname="clearComponent" :is="component"></component>
             </span>
+            <component @eventname="clearComponent" :is="component"></component>
         </span>
     </div>
 </template>
@@ -51,23 +51,30 @@ export default {
 div {
     display: flex;
     flex-direction: row;
-    text-align: center;
-    height: 100%;
-    background-color: whitesmoke;
+    height: 100vh;
+    width: 100%;
+}
+
+span {
+    justify-content: flex-start;
+    width: 60vh;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
 }
 
 #addAccount {
     cursor: pointer;
-    position: relative;
     margin-top: 1.5rem;
-    margin-left: 2rem;
+    margin-left: 1rem;
 }
 
 #autoGenPass {
     cursor: pointer;
-    position: relative;
     margin-top: 1.5rem;
     margin-left: 1rem;
-    width: 15rem;
+    width: 18rem;
 }
 </style>

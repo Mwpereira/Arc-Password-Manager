@@ -86,15 +86,6 @@ export default {
 </script>
 
 <style scoped>
-div {
-    height: 100%;
-    width: 100%;
-    margin-top: 1rem;
-    margin-left: 2rem;
-    display: flex;
-    flex-direction: column;
-}
-
 span {
     margin-top: 2rem;
     display: flex;
@@ -118,18 +109,17 @@ input {
     color: black;
 }
 
-
 .addForm {
     display: flex;
     flex-direction: column;
-
     align-items: center;
-    height: auto;
-    width: 38rem;
+    height: 100%;
+    width: 78vh;
+    margin-left: 1rem;
     background-color: rgb(229, 229, 229);
 }
 
-.action-btn{
-    margin-right: 3rem;
+.action-btn {
+    margin-right: 2rem;
 }
 </style>

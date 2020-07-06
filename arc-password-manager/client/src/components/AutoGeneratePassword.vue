@@ -1,9 +1,9 @@
 <template>
     <div class="autoGenPassForm">
         <form @submit.prevent="generatePassword">
-            <span>
+            <span id="password">
                 <label>Suggested Password:</label>
-                <label autofocus class="password" type="text" />
+                <label id="password" class="password" type="text" />
             </span>
             <span>
                 <label>Length:</label>
@@ -34,6 +34,7 @@
             <span>
                 <input class="action-btn" type="submit" value="Refresh" @click="generatePassword" />
                 <input class="action-btn" type="submit" value="Cancel" @click="cancel" />
+                <img class="cTCB" src="../assets/clipboard.png" v-on:click="copyToClipBoard()" />
             </span>
         </form>
     </div>
@@ -62,11 +63,11 @@ export default {
             } else {
                 charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             }
-            var retVal = "";
+            var pass = "";
             for (var i = 0, n = charset.length; i < length; ++i) {
-                retVal += charset.charAt(Math.floor(Math.random() * n));
+                pass += charset.charAt(Math.floor(Math.random() * n));
             }
-            return retVal;
+            return pass;
         },
         generatePassword() {
             let length = this.passwordLength; //document.getElementsById("length");
@@ -86,6 +87,12 @@ export default {
                 this.passwordLength = output.innerHTML;
             };
         },
+        copyToClipBoard() {
+            var lblPassword = document.getElementsByTagName("label")[1];
+            lblPassword.select();
+            lblPassword.setSelectionRange(0, 99999);
+            document.execCommand("Copy");
+        },
     },
     mounted() {
         this.passwordLength = 9;
@@ -96,25 +103,13 @@ export default {
 </script>
 
 <style scoped>
-div {
-    height: 100%;
-    width: 100%;
-    margin-top: 1rem;
-    margin-left: 2rem;
-    display: flex;
-    flex-direction: column;
-    background-color: orange;
-}
-
 span {
     margin-top: 2rem;
     margin-bottom: 2rem;
-    margin-left: 7rem;
-
     display: flex;
-    flex-direction: row;   
-    align-items: center;
-    justify-content: center; 
+    flex-direction: row;
+    justify-content: center;
+    width: 78vh;
 }
 
 h1 {
@@ -124,7 +119,8 @@ h1 {
 label {
     font-size: 24px;
     cursor: default;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
+    margin-top: -0.5rem;
 }
 
 p {
@@ -140,11 +136,17 @@ input {
 .autoGenPassForm {
     display: flex;
     flex-direction: row;
-
     align-items: center;
-    height: auto;
-    width: 100%;
+    height: 40%;
+    width: 78vh;
+    margin-left: 1rem;
     background-color: rgb(229, 229, 229);
+    justify-content: center;
+    position: absolute;
+}
+
+.password {
+    width: 8rem;
 }
 
 .slidecontainer {
@@ -186,8 +188,21 @@ input {
     cursor: pointer;
 }
 
-#cbSC{
-    margin-right: 1rem;
+.cTCB {
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+    width: 5vh;
+    height: 5vh;
+    cursor: pointer;
 }
 
+#password {
+    align-content: flex-start;
+    background: red;
+}
+
+#cbSC {
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
 </style>
