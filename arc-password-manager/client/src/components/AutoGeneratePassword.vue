@@ -24,7 +24,7 @@
                 <label>Special Characters:</label>
                 <input
                     type="checkbox"
-                    id="cbAd"
+                    id="cbSC"
                     value="Enabled"
                     v-model="ckSpecialChars"
                     checked="true"
@@ -88,6 +88,8 @@ export default {
         },
     },
     mounted() {
+        this.passwordLength = 9;
+        this.ckSpecialChars = true;
         this.generatePassword();
     },
 };
@@ -95,22 +97,24 @@ export default {
 
 <style scoped>
 div {
-    position: relative;
     height: 100%;
     width: 100%;
     margin-top: 1rem;
     margin-left: 2rem;
     display: flex;
     flex-direction: column;
+    background-color: orange;
 }
 
 span {
     margin-top: 2rem;
-    display: flex;
-    flex-direction: row;
     margin-bottom: 2rem;
+    margin-left: 7rem;
+
+    display: flex;
+    flex-direction: row;   
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center; 
 }
 
 h1 {
@@ -139,14 +143,15 @@ input {
 
     align-items: center;
     height: auto;
-    width: 38rem;
+    width: 100%;
     background-color: rgb(229, 229, 229);
 }
 
 .slidecontainer {
     width: 25%;
-    margin-top: 3rem;
-    margin-left: 2rem;
+    margin-top: 0rem;
+    margin-right: 2rem;
+    margin-left: 0rem;
 }
 
 .slider {
@@ -180,4 +185,9 @@ input {
     background: indigo;
     cursor: pointer;
 }
+
+#cbSC{
+    margin-right: 1rem;
+}
+
 </style>

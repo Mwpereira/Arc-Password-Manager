@@ -87,7 +87,6 @@ export default {
 
 <style scoped>
 div {
-    position: relative;
     height: 100%;
     width: 100%;
     margin-top: 1rem;
@@ -119,6 +118,7 @@ input {
     color: black;
 }
 
+
 .addForm {
     display: flex;
     flex-direction: column;
@@ -127,5 +127,9 @@ input {
     height: auto;
     width: 38rem;
     background-color: rgb(229, 229, 229);
+}
+
+.action-btn{
+    margin-right: 3rem;
 }
 </style>
