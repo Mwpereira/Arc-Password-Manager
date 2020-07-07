@@ -1,12 +1,12 @@
 <template>
     <div class="autoGenPassForm">
         <form @submit.prevent="generatePassword">
-            <span id="password">
+            <span id="spanPassword">
                 <label>Suggested Password:</label>
-                <label id="password" class="password" type="text" />
+                <input id="password" class="password" type="text" />
             </span>
             <span>
-                <label>Length:</label>
+                <label style="margin-top: -0.2rem;">Length:</label>
                 <div @submit.prevent="updateLength" class="slidecontainer">
                     <input
                         type="range"
@@ -18,7 +18,7 @@
                         v-on:input="updateLength"
                     />
                 </div>
-                <p type="number" id="length">9</p>
+                <p type="number" id="length" style="width: 1rem;">9</p>
             </span>
             <span>
                 <label>Special Characters:</label>
@@ -70,13 +70,21 @@ export default {
             return pass;
         },
         generatePassword() {
-            let length = this.passwordLength; //document.getElementsById("length");
-            let specialChars = this.ckSpecialChars; // document.getElementById("cbLength");
+            let length = this.passwordLength;
+            let specialChars = this.ckSpecialChars;
 
             let p = this.randomPassword(length, specialChars);
 
-            var lblPassword = document.getElementsByTagName("label");
-            lblPassword[1].innerText = p;
+            if (this.passwordLength >= 12){
+                    document.getElementById("password").style.width = "13rem";
+                }
+                else
+                {
+                    document.getElementById("password").style.width = "7rem";
+                }
+
+            var lblPassword = document.getElementsByTagName("input");
+            lblPassword[2].value = p;
         },
         updateLength() {
             var slider = document.getElementById("passwordLength");
@@ -88,7 +96,7 @@ export default {
             };
         },
         copyToClipBoard() {
-            var lblPassword = document.getElementsByTagName("label")[1];
+            var lblPassword = document.getElementsByTagName("input")[2];
             lblPassword.select();
             lblPassword.setSelectionRange(0, 99999);
             document.execCommand("Copy");
@@ -133,24 +141,33 @@ input {
     color: black;
 }
 
+form{
+    margin-top: 1rem;
+}
+
 .autoGenPassForm {
     display: flex;
     flex-direction: row;
     align-items: center;
     height: 40%;
     width: 78vh;
-    margin-left: 1rem;
+    margin-left: 1.5rem;
     background-color: rgb(229, 229, 229);
     justify-content: center;
     position: absolute;
 }
 
 .password {
-    width: 8rem;
+    width: 7rem;
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    margin-top: -0.3rem;
 }
 
 .slidecontainer {
-    width: 25%;
+    width: 10vh;
     margin-top: 0rem;
     margin-right: 2rem;
     margin-left: 0rem;
@@ -159,7 +176,7 @@ input {
 .slider {
     -webkit-appearance: none;
     appearance: none;
-    width: 100%;
+    width: 10vh;
     height: 25px;
     background: #d3d3d3;
     outline: none;
@@ -191,14 +208,13 @@ input {
 .cTCB {
     margin-top: 1rem;
     margin-left: 0.5rem;
-    width: 5vh;
-    height: 5vh;
+    width: 2.5rem;
+    height: 2.5rem;
     cursor: pointer;
 }
 
-#password {
+#spanPassword {
     align-content: flex-start;
-    background: red;
 }
 
 #cbSC {

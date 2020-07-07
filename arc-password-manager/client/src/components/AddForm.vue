@@ -3,7 +3,7 @@
         <form @submit.prevent="saveAccount">
             <span>
                 <label>Website/App:</label>
-                <input autofocus class="input-bar" type="text" v-model="webApp" />
+                <input autofocus class="input-bar" type="text" v-model="webApp" minlength="7" required/>
             </span>
             <span>
                 <label>Email:</label>
@@ -11,23 +11,23 @@
             </span>
             <span>
                 <label>Username:</label>
-                <input class="input-bar" type="text" v-model="username" />
+                <input class="input-bar" type="text" v-model="username" minlength="7" required/>
             </span>
             <span>
                 <label>Password:</label>
-                <input class="input-bar" type="text" v-model="password" />
+                <input class="input-bar" type="text" v-model="password" minlength="7" required/>
             </span>
             <span>
                 <label>Security Answer 1:</label>
-                <input class="input-bar" type="text" v-model="sa1" />
+                <input class="input-bar" type="text" v-model="securityAnswer1" />
             </span>
             <span>
                 <label>Security Answer 2:</label>
-                <input class="input-bar" type="text" v-model="sa2" />
+                <input class="input-bar" type="text" v-model="securityAnswer2" />
             </span>
             <span>
                 <label>Security Answer 3:</label>
-                <input class="input-bar" type="text" v-model="sa3" />
+                <input class="input-bar" type="text" v-model="securityAnswer3" />
             </span>
             <span>
                 <input class="action-btn" type="submit" value="Save" @click="saveAccount" />
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import bcrypt from "bcryptjs";
+
 export default {
     name: "AddForm",
     props: ["component"],
@@ -56,17 +58,22 @@ export default {
         completeAccount() {
             this.$emit("eventname");
         },
-        saveAccount() {
-            let form = document.getElementsByTagName("form")[0];
+        async saveAccount() {
+
+            try {
+
+            let details = document.getElementsByTagName("input");
             this.completeAccount();
 
-            let webApp = form.children[0].value;
-            let email = form.children[1].value;
-            let username = form.children[2].value;
-            let password = form.children[3].value;
-            let securityAnswer1 = form.children[4].value;
-            let securityAnswer2 = form.children[5].value;
-            let securityAnswer3 = form.children[6].value;
+            const salt = await bcrypt.genSaltSync();
+
+            const webApp = await bcrypt.hashSync(details[2].value, salt);
+            const email = await bcrypt.hashSync(details[3].value, salt);
+            const username = await bcrypt.hashSync(details[4].value, salt);
+            const password = await bcrypt.hashSync(details[5].value, salt);
+            const securityAnswer1 = await bcrypt.hashSync(details[6].value, salt);
+            const securityAnswer2 = await bcrypt.hashSync(details[7].value, salt);
+            const securityAnswer3 = await bcrypt.hashSync(details[8].value, salt);
 
             let account = {
                 webApp: webApp,
@@ -78,7 +85,11 @@ export default {
                 securityAnswer3: securityAnswer3,
             };
 
-            sessionStorage.setItem("account", account);
+            localStorage.setItem("abcDEF", JSON.stringify(account));
+            }
+            catch{
+                console.log("ERROR");
+            }
         },
     },
     mounted() {},
@@ -107,19 +118,30 @@ label {
 input {
     background-color: white;
     color: black;
+    cursor: pointer;
+}
+
+form{
+    margin-left: 0.75rem;
 }
 
 .addForm {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    height: 110vh;
     width: 78vh;
-    margin-left: 1rem;
+    margin-left: 1.5rem;
     background-color: rgb(229, 229, 229);
 }
 
 .action-btn {
     margin-right: 2rem;
+}
+
+@media (min-width: 900px), (min-height: 900px) {
+    .addForm{
+        height: 82vh;
+    }
 }
 </style>

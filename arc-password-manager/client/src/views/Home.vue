@@ -45,14 +45,14 @@ export default {
     },
     mounted() {},
 };
-</script>
+</script>   
 
 <style scoped>
 div {
     display: flex;
     flex-direction: row;
-    height: 100vh;
-    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
 }
 
 span {
@@ -68,13 +68,14 @@ span {
 #addAccount {
     cursor: pointer;
     margin-top: 1.5rem;
-    margin-left: 1rem;
+    margin-left: 1.5rem;
+    width: 15rem;
 }
 
 #autoGenPass {
     cursor: pointer;
     margin-top: 1.5rem;
     margin-left: 1rem;
-    width: 18rem;
+    width: 25rem;
 }
 </style>

@@ -54,7 +54,7 @@ div {
     border-image-slice: 1;
     border-width: 5px;
     border-image-source: linear-gradient(to left, #ff9d00, #3ab1d5);
-	height: 4rem;
+	height: 8.5vh;
 }
 
 span {

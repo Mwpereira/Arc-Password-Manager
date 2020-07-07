@@ -51,7 +51,6 @@ h2 {
 }
 
 .accounts {
-    background: green;
     width: 40vh;
 }
 
@@ -61,8 +60,8 @@ h2 {
     flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;
-    height: 100vh;
-    width: 100%;
+    height: 90vh;
+    width: 40vh;
     background-color: white;
 }
 </style>
