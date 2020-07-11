@@ -1,43 +1,47 @@
 <template>
     <div class="accounts">
-        <ul class="list-accounts">
-            <li>
-                <h2>Accounts</h2>
-            </li>
-            <li>
-                <h2>Instagram</h2>
+        <ul class="listAccounts">
+            <h1 id="lblAccounts">Accounts</h1>
+            <li v-for="account in accounts" :key="account.accountName">
+                <h2 @click="loadForm(account.accountName)">{{account.accountName}}</h2>
             </li>
         </ul>
-    </div>
+    </div>   
 </template>
 
 <script>
+import CryptoJS from "crypto-js";
+import store from "@/store";
+
 export default {
     name: "Accounts",
-    props: ["mode"],
     data: () => {
         return {
-            p: "",
+            accounts: [],
+            passPhrase: ""
         };
     },
     methods: {
-        loadAccounts() {
-            if (sessionStorage.getItem("accounts") == undefined) {
-                /* try{
-
-                }
-                catch{
-
-                }*/
-            } else {
-                //  let accounts = sessionStorage.getItem('accounts');
-            }
-            this.displayAccounts();
+        loadForm(elem){
+            store.commit('loadForm', elem);
+            this.$emit('loadForm');
         },
-        displayAccounts() {},
+        loadAccounts(){
+            store.commit('loadAccounts');
+            this.updateAccounts();
+        },
+        updateAccounts(){
+            let accountsList = store.getters.accounts;
+            let passPhraseCode = store.getters.passPhrase;
+            accountsList.forEach(element => {
+            this.accounts.push({
+                accountName: CryptoJS.AES.decrypt(element.webApp, passPhraseCode).toString(CryptoJS.enc.Utf8),
+                });
+            });
+        }
     },
     mounted() {
-        //this.loadAccounts();
+      this.loadAccounts();
     },
 };
 </script>
@@ -50,11 +54,21 @@ h2 {
     margin-top: 1rem;
 }
 
+h2:hover {
+  color: #2693ff;
+}
+
+button{
+    background: red;
+    widows: 100%;
+    z-index: 99;
+}
+
 .accounts {
     width: 40vh;
 }
 
-.list-accounts {
+.listAccounts {
     display: flexbox;
     display: flex;
     flex-direction: column;
@@ -63,5 +77,13 @@ h2 {
     height: 90vh;
     width: 40vh;
     background-color: white;
+    color: black;
+}
+
+#lblAccounts{
+    font-size: 32px;
+    color: black;
+    text-align: center;
+    margin-top: 1rem;
 }
 </style>

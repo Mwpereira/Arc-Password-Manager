@@ -1,44 +1,45 @@
 <template>
     <div class="addForm">
-        <form @submit.prevent="saveAccount">
+        <form>
             <span>
                 <label>Website/App:</label>
-                <input autofocus class="input-bar" type="text" v-model="webApp" minlength="7" required/>
+                <input autofocus class="input-bar" type="text" v-model="webApp" minlength="3" required/>
             </span>
             <span>
                 <label>Email:</label>
-                <input autofocus class="input-bar" type="text" v-model="email" />
+                <input autofocus class="input-bar" type="text" v-model="email" minlength="3" required/>
             </span>
             <span>
                 <label>Username:</label>
-                <input class="input-bar" type="text" v-model="username" minlength="7" required/>
+                <input class="input-bar" type="text" v-model="username" minlength="3" required/>
             </span>
             <span>
                 <label>Password:</label>
-                <input class="input-bar" type="text" v-model="password" minlength="7" required/>
+                <input class="input-bar" type="text" v-model="password" minlength="3" required/>
             </span>
-            <span>
+            <span class="inputSC">
                 <label>Security Answer 1:</label>
                 <input class="input-bar" type="text" v-model="securityAnswer1" />
             </span>
-            <span>
+            <span class="inputSC">
                 <label>Security Answer 2:</label>
                 <input class="input-bar" type="text" v-model="securityAnswer2" />
             </span>
-            <span>
+            <span class="inputSC">
                 <label>Security Answer 3:</label>
                 <input class="input-bar" type="text" v-model="securityAnswer3" />
             </span>
             <span>
                 <input class="action-btn" type="submit" value="Save" @click="saveAccount" />
-                <input class="action-btn" type="submit" value="Cancel" @click="completeAccount" />
+                <input class="action-btn" type="submit" value="Cancel" @click="exit" />
             </span>
         </form>
     </div>
 </template>
 
 <script>
-import bcrypt from "bcryptjs";
+import CryptoJS from "crypto-js";
+import store from "@/store";
 
 export default {
     name: "AddForm",
@@ -55,25 +56,39 @@ export default {
         };
     },
     methods: {
-        completeAccount() {
-            this.$emit("eventname");
+        exit() {
+            this.$emit("clearComponent");
         },
-        async saveAccount() {
-
+        encryptString(text, passPhrase){
+            return CryptoJS.AES.encrypt(text, passPhrase).toString();
+        },
+        saveAccount() {
             try {
-
             let details = document.getElementsByTagName("input");
-            this.completeAccount();
+            let passPhrase = "";
 
-            const salt = await bcrypt.genSaltSync();
+            if (localStorage.getItem("passPhrase") != null){
+                passPhrase = localStorage.getItem("passPhrase");
+            }
+            else{
+                var length = 32;
+                var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*./'";
+                for (var i = 0, n = charset.length; i < length; ++i) {
+                passPhrase += charset.charAt(Math.floor(Math.random() * n));
+                }
+                localStorage.setItem("passPhrase", passPhrase);       
+            }
 
-            const webApp = await bcrypt.hashSync(details[2].value, salt);
-            const email = await bcrypt.hashSync(details[3].value, salt);
-            const username = await bcrypt.hashSync(details[4].value, salt);
-            const password = await bcrypt.hashSync(details[5].value, salt);
-            const securityAnswer1 = await bcrypt.hashSync(details[6].value, salt);
-            const securityAnswer2 = await bcrypt.hashSync(details[7].value, salt);
-            const securityAnswer3 = await bcrypt.hashSync(details[8].value, salt);
+            if(details[2].value.length >= 3 && details[3].value.length >= 3 
+            && details[4].value.length >= 3 && details[5].value.length >= 3){
+
+            const webApp = this.encryptString(details[2].value, passPhrase);
+            const email = this.encryptString(details[3].value, passPhrase);
+            const username = this .encryptString(details[4].value, passPhrase);
+            const password = this.encryptString(details[5].value, passPhrase);
+            const securityAnswer1 = this.encryptString(details[6].value, passPhrase);
+            const securityAnswer2 = this.encryptString(details[7].value, passPhrase);
+            const securityAnswer3 = this.encryptString(details[8].value, passPhrase);
 
             let account = {
                 webApp: webApp,
@@ -85,10 +100,12 @@ export default {
                 securityAnswer3: securityAnswer3,
             };
 
-            localStorage.setItem("abcDEF", JSON.stringify(account));
+            store.commit('addAccount', account);
+            this.exit();
             }
-            catch{
-                console.log("ERROR");
+            }
+            catch(e){
+                console.log(e);
             }
         },
     },
@@ -98,12 +115,12 @@ export default {
 
 <style scoped>
 span {
-    margin-top: 2rem;
+    margin-top: 1rem;
     display: flex;
     flex-direction: row;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 h1 {
@@ -111,14 +128,15 @@ h1 {
 }
 
 label {
-    font-size: 24px;
+    font-size: 22px;
     cursor: default;
 }
 
 input {
     background-color: white;
     color: black;
-    cursor: pointer;
+    width: 10rem;
+    font-size: 22px;
 }
 
 form{
@@ -129,19 +147,50 @@ form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 110vh;
-    width: 78vh;
+    justify-content: flex-end;
+    height: auto;
+    width: auto;
     margin-left: 1.5rem;
+    margin-top: 1rem;
     background-color: rgb(229, 229, 229);
 }
 
-.action-btn {
-    margin-right: 2rem;
+.action-btn{
+    color: black;
+	justify-content: center;
+	border: none;
+	border-radius: 100px;
+	width: 200px;
+	height: 40px;
+	outline: none;
+	font-size: large;
+	font-weight: 550;
+	margin: 10px;
+	cursor: pointer;
+    background-color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-@media (min-width: 900px), (min-height: 900px) {
-    .addForm{
-        height: 82vh;
-    }
+.inputSC{
+   margin: 0rem;
+}
+
+.input-bar {
+	outline: none;
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
+	margin: 10px;
+	font-size: 20px;
+	font-family: 'Bitter';
+	color: black;
+	padding: 5px 5px;
+	cursor: text;
+    width: 10rem;    
+    background-color: white;
+}
+
+.input-bar:hover,:focus{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-bottom: none;
 }
 </style>

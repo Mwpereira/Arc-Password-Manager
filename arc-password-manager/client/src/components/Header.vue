@@ -1,43 +1,39 @@
 <template>
-	<menu>
-	<div class="menu" :class="mode">
+	<div class="menu">
 		<span>
 			<img class="logo" src="../assets/logo.png" />
 			<h1>Arc</h1>
 		</span>
-        <h2></h2>
+        <h2>Home</h2>
 		<span @submit.prevent="pageSwitch">
 			<img class="home" src="../assets/home.png"  v-on:click="pageSwitch('Home')">
 			<img class="information" src="../assets/i.png" v-on:click="pageSwitch('Information')" />
 			<img class="settings" src="../assets/settings.png" v-on:click="pageSwitch('Settings')" />	
 		</span>
 	</div>
-	</menu>
 </template>
 
 <script>
 export default {
 	name: 'Header',
-	props: ["mode"],
 	components: {  },
 	data: () => {
         return {
-            mode: "",
             saltLevel: "",
             adEnabled: "",
         };
     },
     methods: {
         pageSwitch(p){
-			var title = document.getElementsByTagName("h2");
-			title[0].innerText = p;
-			this.$router.push(`${p}`);
+			var title = document.getElementsByTagName("h2")[0];
+			if (p != title.innerText){
+				title.innerText = p;
+				this.$router.push(`${p}`);
+			}	
 		},
 	},
-	mounted(){
-		this.pageSwitch('Home');
+	mounted(){},
 	}
-};
 </script>
 
 <style scoped>
@@ -74,6 +70,10 @@ h2{
 	cursor: default;
     margin-top: 0.5rem;
 	margin-left: 1rem;
+}
+
+.menu{
+	background-color: white;
 }
 
 .logo {

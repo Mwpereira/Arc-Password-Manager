@@ -1,8 +1,6 @@
 <template>
     <div class="home">
-        <keep-alive>
-            <Accounts />
-        </keep-alive>
+        <Accounts @clearComponent="clearComponent" @loadForm="loadForm"/>
         <span>
             <span class="buttons">
                 <input
@@ -20,7 +18,7 @@
                     value="+ Auto Generate Password"
                 />
             </span>
-            <component @eventname="clearComponent" :is="component"></component>
+            <component @clearComponent="clearComponent" :is="component"></component>
         </span>
     </div>
 </template>
@@ -29,10 +27,12 @@
 import Accounts from "@/components/Accounts";
 import AddForm from "@/components/AddForm";
 import AutoGenPass from "@/components/AutoGeneratePassword";
+import EditForm from "@/components/EditForm";
+import LoadForm from "@/components/LoadForm";
 
 export default {
     name: "Home",
-    components: { Accounts, AddForm, AutoGenPass },
+    components: { Accounts, AddForm, AutoGenPass, EditForm, LoadForm },
     data: () => {
         return {
             component: "",
@@ -42,6 +42,9 @@ export default {
         clearComponent() {
             this.component = "";
         },
+        loadForm(){
+            this.component = "LoadForm";  
+        }
     },
     mounted() {},
 };
@@ -52,12 +55,20 @@ div {
     display: flex;
     flex-direction: row;
     height: 100%;
-    background-color: whitesmoke;
 }
 
 span {
     justify-content: flex-start;
-    width: 60vh;
+    
+}
+
+h2{
+    color: black;
+    font-size: 30px;
+}
+
+.home{
+    background-color: whitesmoke;
 }
 
 .buttons {
@@ -65,17 +76,50 @@ span {
     flex-direction: row;
 }
 
+.main-btn{
+	color: black;
+	justify-content: center;
+	border: none;
+	border-radius: 100px;
+	width: 250px;
+	height: 50px;
+	outline: none;
+	font-size: large;
+	font-weight: 550;
+	margin: 10px;
+	cursor: pointer;
+    background-color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.input-bar {
+	outline: none;
+	border: none;
+    border-bottom: 2px solid black;
+	background-color: rgba(255, 255, 255, 0);
+	margin: 10px;
+	font-size: 22px;
+	font-family: 'Bitter';
+	color: black;
+	padding: 5px 5px;
+	cursor: text;
+    width: 20rem;
+}
+
+.input-bar:hover,:focus{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-bottom: none;
+}
+
 #addAccount {
     cursor: pointer;
     margin-top: 1.5rem;
     margin-left: 1.5rem;
-    width: 15rem;
 }
 
 #autoGenPass {
     cursor: pointer;
     margin-top: 1.5rem;
     margin-left: 1rem;
-    width: 25rem;
 }
 </style>

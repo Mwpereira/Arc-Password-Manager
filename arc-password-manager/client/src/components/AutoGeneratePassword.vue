@@ -34,7 +34,7 @@
             <span>
                 <input class="action-btn" type="submit" value="Refresh" @click="generatePassword" />
                 <input class="action-btn" type="submit" value="Cancel" @click="cancel" />
-                <img class="cTCB" src="../assets/clipboard.png" v-on:click="copyToClipBoard()" />
+                <img class="cTCB" src="../assets/clipboard.png" @click="copyToClipBoard" />
             </span>
         </form>
     </div>
@@ -52,7 +52,7 @@ export default {
     },
     methods: {
         cancel() {
-            this.$emit("eventname");
+            this.$emit("clearComponent");
         },
         randomPassword(len, specialChars) {
             var length = len;
@@ -112,12 +112,12 @@ export default {
 
 <style scoped>
 span {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    padding: 2vh;
+    margin-left: -2.2%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 78vh;
+    width: 100%;
 }
 
 h1 {
@@ -125,10 +125,11 @@ h1 {
 }
 
 label {
-    font-size: 24px;
+    font-size: 22px;
     cursor: default;
     margin-right: 0.5rem;
     margin-top: -0.5rem;
+    width: auto;
 }
 
 p {
@@ -149,12 +150,29 @@ form{
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 40%;
-    width: 78vh;
+    height: auto;
+    width: 75vh;
     margin-left: 1.5rem;
+    margin-top: 1rem;
     background-color: rgb(229, 229, 229);
     justify-content: center;
     position: absolute;
+}
+
+.action-btn{
+    color: black;
+	justify-content: center;
+	border: none;
+	border-radius: 100px;
+	width: 175px;
+	height: 40px;
+	outline: none;
+	font-size: large;
+	font-weight: 550;
+	margin: 10px;
+	cursor: pointer;
+    background-color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .password {
@@ -164,10 +182,11 @@ form{
     border: none;
     text-align: center;
     margin-top: -0.3rem;
+    cursor: text;
 }
 
 .slidecontainer {
-    width: 10vh;
+    width: 14vh;
     margin-top: 0rem;
     margin-right: 2rem;
     margin-left: 0rem;
@@ -176,7 +195,7 @@ form{
 .slider {
     -webkit-appearance: none;
     appearance: none;
-    width: 10vh;
+    width: 14vh;
     height: 25px;
     background: #d3d3d3;
     outline: none;
@@ -206,7 +225,7 @@ form{
 }
 
 .cTCB {
-    margin-top: 1rem;
+    margin-top: 0.75rem;
     margin-left: 0.5rem;
     width: 2.5rem;
     height: 2.5rem;

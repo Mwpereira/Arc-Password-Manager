@@ -5,16 +5,19 @@
 		<p>Created By: Michael Pereira</p>
 		<p>Version: 1.0.0</p>
 		<span @submit.prevent="openLink">
-			<img type="submit" class="idMwp" src="../assets/linkedin.png" v-on:click="openLink('https://www.linkedin.com/in/michael-pereira-0237a0193/')" />
-			<img type="submit" class="idMwp" src="../assets/github.png" v-on:click="openLink('https://github.com/Mwpereira')" />
-		</span>
+		<button type="submit" style="border: 0; background: transparent; outline: none;" @click="openLink('https://www.linkedin.com/in/michael-pereira-0237a0193/')" >
+            <img class="btns" src="../assets/linkedin.png" alt="submit" />
+        </button>
+		<button type="submit" style="border: 0; background: transparent; outline: none;" @click="openLink('https://github.com/Mwpereira')">
+            <img class="btns" src="../assets/github.png" alt="submit" />
+        </button>	
+	</span>
 	</div>
 </template>
 
 <script>
 export default {
 	name: "Information",
-	props: ['mode'],
     data: () => {
         return{
             url: '',
@@ -35,7 +38,7 @@ div {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	margin-top: 7%;
+	margin-top: 10vh;
 }
 
 h1 {
@@ -56,14 +59,14 @@ img {
 	cursor: pointer;
 }
 
+.btns{
+	padding-right: 0.5rem;
+	padding-left: 0.5rem;
+}
+
 #logo {
 	margin-top: 0rem;
 	width: 10rem;
 	cursor: default;
-}
-
-.idMwp{
-	padding-right: 0.5rem;
-	padding-left: 0.5rem;
 }
 </style>

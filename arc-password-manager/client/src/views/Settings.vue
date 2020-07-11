@@ -1,6 +1,5 @@
 <template>
-    <menu>
-        <div class="settings" :class="mode">
+        <div class="settings">
             <span class="salt">
                 <h3 id="saltHeader">Salt Level:</h3>
                 <div @submit.prevent="updateSalt" class="slidecontainer">
@@ -22,7 +21,7 @@
                 Encryption Time
             </p>
             <span class="arc-ad">
-                <h3 id="adHeader">Arc Startup Ad:</h3>
+                <h3 id="adHeader">Arc Startup Slides:</h3>
                 <input type="checkbox" id="cbAd" value="Enabled" v-model="ckAdEnabled" />
                 <label for="cbAd" id="lblAd">Enabled</label>
                 <br />
@@ -31,7 +30,6 @@
             <span class="darkmode">
                 <h3 id="themeHeader">Dark Mode:</h3>
                 <Toggle
-                    :mode="mode"
                     @toggle="toggle"
                     id="cbDarkMode"
                     value="Enabled"
@@ -55,7 +53,6 @@
                 />
             </span>
         </div>
-    </menu>
 </template>
 
 <script>
@@ -63,15 +60,14 @@ import Toggle from "@/components/Toggle";
 
 export default {
     name: "Settings",
-    props: ["mode"],
     components: {
         Toggle,
     },
     data: () => {
         return {
-            mode: "",
             saltLevel: "",
-            adEnabled: "",
+            ckAdEnabled: "",
+            cbDarkMode: "",
         };
     },
     methods: {
@@ -172,6 +168,22 @@ p {
 .arc-ad {
     display: flex;
     flex-direction: row;
+}
+
+.main-btn{
+	color: black;
+	justify-content: center;
+	border: none;
+	border-radius: 100px;
+	width: 175px;
+	height: 50px;
+	outline: none;
+	font-size: large;
+	font-weight: 550;
+	margin: 5px;
+	cursor: pointer;
+    background-color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .darkmode {

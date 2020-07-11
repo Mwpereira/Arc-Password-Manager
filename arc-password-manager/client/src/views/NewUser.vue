@@ -92,6 +92,7 @@ div {
 	text-align: center;
 	height: 100%;
     overflow: hidden;
+	background-color: white;
 }
 
 div > .text{
@@ -99,7 +100,7 @@ div > .text{
 }
 
 h1{
-    padding: 3rem;
+    padding: 1rem;
 }
 
 .close-btn {
@@ -126,7 +127,7 @@ h1{
 .images {
 	display: none;
 	width: 15rem;
-	margin-top: -1rem;
+	margin-top: -5vh;
 }
 
 .prev,

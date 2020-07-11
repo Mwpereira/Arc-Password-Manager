@@ -1,10 +1,13 @@
 <template>
 	<div class="home">
-		<h1>Arc</h1>
+		<span id="co">
+			<img class="logo" src="../assets/logo.png" />
+			<h1>Arc</h1>
+		</span>
 		<h2>Keep Yourself Safe.<br />Secure, Advanced, and Customizable Software at Your Service.</h2>
-		<span>
-			<input class="action-btn" value="Login" type="submit" onclick="javascript:location.href='/login'" />
-			<input class="action-btn" value="Sign up" type="submit" onclick="javascript:location.href='/signup'" />
+		<span id="btns">
+			<input class="action-btn" id="login" value="Login" type="submit" onclick="javascript:location.href='/login'" />
+			<input class="action-btn" id="signup" value="Sign up" type="submit" onclick="javascript:location.href='/signup'" />
 		</span>
 	</div>
 </template>
@@ -18,31 +21,69 @@ export default {
 div {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-
-	background-image: url('../assets/background900.jpg');
 	height: 100%;
 }
 
-h2 {
-	font-weight: normal;
-	font-size: 20px;
-	font-style: italic;
-	height: 4rem;
-	color: white;
-	font-family: 'Bitter';
-	cursor: default;
+span{
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
 }
 
-.details {
+h2 {
+	font-size: 24px;
 	font-style: italic;
+	font-weight: bold;
+	height: 4rem;
+	color: #15202B;
+	font-family: 'Bitter';
+	cursor: default;
+	align-items: center;
+	text-align: center;
+}
+
+.action-btn{
+	color: white;
+	justify-content: center;
+	border: none;
+	border-radius: 100px;
+	width: 150px;
+	height: 50px;
+	outline: none;
+	font-size: large;
+	font-weight: 550;
+	margin: 10px;
+	cursor: pointer;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background: linear-gradient(to right, rgb(255, 217, 0), rgb(255, 179, 0));
+}
+
+.action-btn:hover{
+    transform: scale(1.1,1.1);
+}
+
+.logo {
+	width: 5rem;
+	height: 5rem;
+	padding: 0.5rem;
+	margin-top: -0.5rem;
 }
 
 ::placeholder {
 	color: rgba(255, 255, 255, 0.479);
 	font-size: 20px;
+}
+
+#co{
+	margin-top: 20vh;
+	margin-bottom: 5vh;
+}
+
+#btns{
+	margin-top: 5vh;
+	margin-bottom: 5vh;
 }
 
 #login-error-message {
@@ -88,11 +129,4 @@ h2 {
 	display: none;
 	padding-bottom: 0.5rem;
 }
-
-@media (min-width: 900px), (min-height: 700px) {
-	div {
-		background-image: url('../assets/background1920.jpg');
-	}
-}
-
 </style>
