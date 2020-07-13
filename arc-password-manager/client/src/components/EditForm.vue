@@ -3,31 +3,31 @@
         <form>
             <span>
                 <label>Website/App:</label>
-                <label class="value">Empty</label>
+                <input class="value"/>
             </span>
             <span>
                 <label>Email:</label>
-                <label class="value">Empty</label>
+                <input class="value"/>
             </span>
             <span>
                 <label>Username:</label>
-                <label class="value">Empty</label>
+                <input class="value"/>
             </span>
             <span>
                 <label>Password:</label>
-                <label class="value">Empty</label>
+                <input class="value"/>
             </span>
             <span class="inputSC">
                 <label>Security Answer 1:</label>
-                <label class="value">Empty</label>
+                <input class="value"/>
             </span>
             <span class="inputSC">
                 <label>Security Answer 2:</label>
-                <label class="value">Empty</label>
+                <input class="value"/>
             </span>
             <span class="inputSC">
                 <label>Security Answer 3:</label>
-                <label class="value">Empty</label>
+                <input class="value"/>
             </span>
             <span >
                 <input class="action-btn" type="submit" value="Edit" @click="editAccount" />
