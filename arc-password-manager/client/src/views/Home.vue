@@ -18,7 +18,7 @@
                     value="+ Auto Generate Password"
                 />
             </span>
-            <component @clearComponent="clearComponent" :is="component"></component>
+            <component @editForm="editForm" @clearComponent="clearComponent" :is="component"></component>
         </span>
     </div>
 </template>
@@ -42,6 +42,9 @@ export default {
         clearComponent() {
             this.component = "";
         },
+        editForm(){
+            this.component = "EditForm";  
+        },
         loadForm(){
             this.component = "LoadForm";  
         }
@@ -59,7 +62,6 @@ div {
 
 span {
     justify-content: flex-start;
-    
 }
 
 h2{

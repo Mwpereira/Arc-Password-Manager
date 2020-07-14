@@ -10,7 +10,8 @@ export default new Vuex.Store({
   state: {
     account: "",
     accounts: [],
-    passPhrase: ""
+    passPhrase: "",
+    encryptionType: "",
   },
   mutations: {
     accounts(state, payload){
@@ -25,10 +26,14 @@ export default new Vuex.Store({
       state.accounts = "";
     },
     deleteAccount(state, payload){
-      console.log(payload);
       state.accounts.splice(payload,1);
       localStorage.setItem("accounts", JSON.stringify(state.accounts));
-      Accounts.methods.updateAccounts();
+    },
+    encryptionType(state, payload){
+      state.encryptionType = payload;
+    },
+    editForm(){
+      Home.methods.editForm();
     },
     loadForm(state, payload){
       if (state.account == ""){
@@ -39,7 +44,7 @@ export default new Vuex.Store({
       {
         state.account = payload;
         LoadForm.methods.loadAccount();  
-      } 
+      }
     },
     loadAccounts(state){
       let accounts = JSON.parse(localStorage.getItem("accounts"));
@@ -49,7 +54,16 @@ export default new Vuex.Store({
     },
     passPhrase(state, payload){
       state.passPhrase = payload;
-    }
+    },
+    updateAccount(state, payload){
+      state.accounts.splice(payload.index, 1, payload.accountUpdated);
+      console.log(state.accounts[0].webApp);
+      console.log(payload.index);
+      console.log(payload.accountUpdated.webApp);
+      console.log("MICHASJKDL");
+      localStorage.setItem("accounts", JSON.stringify(state.accounts));
+      Accounts.methods.updateAccounts();
+    },
   },
   actions: {
     accounts(state, payload){
@@ -64,6 +78,9 @@ export default new Vuex.Store({
     deleteAccount(state, payload){
       state.commit('deleteAccount', payload);
     },
+    editForm(state){
+      state.commit('editForm');
+    },
     loadForm(state, payload){
       state.commit("loadAccount", payload);
     },
@@ -72,7 +89,10 @@ export default new Vuex.Store({
     },
     passPhrase(state, payload){
       state.commit('passPhrase', payload);
-    }
+    },
+    updateAccount(state, payload){
+      state.commit('updateAccount', payload);
+    },
   },
   getters: {
     accounts(state){
@@ -80,6 +100,9 @@ export default new Vuex.Store({
     },
     addAccount(state){
       return state.accounts;
+    },
+    encryptionType(state){
+      return state.encryptionType;
     },
     loadForm(state){
       return state.account;

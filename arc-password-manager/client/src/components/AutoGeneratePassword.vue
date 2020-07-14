@@ -32,8 +32,8 @@
                 <label for="cbLength" id="lblLength">Enabled</label>
             </span>
             <span>
-                <input class="action-btn" type="submit" value="Refresh" @click="generatePassword" />
-                <input class="action-btn" type="submit" value="Cancel" @click="cancel" />
+                <input class="action-btn" type="button" value="Refresh" @click="generatePassword" />
+                <input class="action-btn" type="button" value="Cancel" @click="cancel" />
                 <img class="cTCB" src="../assets/clipboard.png" @click="copyToClipBoard" />
             </span>
         </form>
@@ -117,7 +117,6 @@ span {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 100%;
 }
 
 h1 {
@@ -151,12 +150,12 @@ form{
     flex-direction: row;
     align-items: center;
     height: auto;
-    width: 75vh;
+    width: auto;
     margin-left: 1.5rem;
     margin-top: 1rem;
     background-color: rgb(229, 229, 229);
     justify-content: center;
-    position: absolute;
+ 
 }
 
 .action-btn{

@@ -54,7 +54,7 @@ export default {
                 try {
                     if (localStorage.getItem(username) != null) {
                         if (await bcrypt.compare(password, localStorage.getItem(username))) {
-                            if (localStorage.getItem("adEnabled") == "false") {
+                            if (localStorage.getItem("slidesEnabled") == "false") {
                                 window.location.href = "/main/home";
                             } else {
                                 window.location.href = "/newUser";

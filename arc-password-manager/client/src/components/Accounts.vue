@@ -33,11 +33,46 @@ export default {
         updateAccounts(){
             let accountsList = store.getters.accounts;
             let passPhraseCode = store.getters.passPhrase;
-            accountsList.forEach(element => {
-            this.accounts.push({
-                accountName: CryptoJS.AES.decrypt(element.webApp, passPhraseCode).toString(CryptoJS.enc.Utf8),
+
+            if(store.getters.encryptionType == ""){
+                store.commit('encryptionType', localStorage.getItem("encryptionType"));
+            }
+
+            let encryptionType = store.getters.encryptionType;
+
+            if(encryptionType == "AES"){
+                accountsList.forEach(element => {
+                this.accounts.push({
+                    accountName: CryptoJS.AES.decrypt(element.webApp, passPhraseCode).toString(CryptoJS.enc.Utf8),
+                    });
                 });
-            });
+            }
+
+            if(encryptionType == "DES"){
+                accountsList.forEach(element => {
+                this.accounts.push({
+                    accountName: CryptoJS.DES.decrypt(element.webApp, passPhraseCode).toString(CryptoJS.enc.Utf8),
+                    });
+                });
+            }
+
+            if(encryptionType == "TripleDES"){
+                accountsList.forEach(element => {
+                this.accounts.push({
+                    accountName: CryptoJS.TripleDes.decrypt(element.webApp, passPhraseCode).toString(CryptoJS.enc.Utf8),
+                    });
+                });
+            }
+
+            if(encryptionType == "Rabbit"){
+                accountsList.forEach(element => {
+                this.accounts.push({
+                    accountName: CryptoJS.Rabbit.decrypt(element.webApp, passPhraseCode).toString(CryptoJS.enc.Utf8),
+                    });
+                });
+            }
+
+            
         }
     },
     mounted() {

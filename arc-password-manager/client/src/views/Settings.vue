@@ -1,57 +1,46 @@
 <template>
         <div class="settings">
-            <span class="salt">
-                <h3 id="saltHeader">Salt Level:</h3>
-                <div @submit.prevent="updateSalt" class="slidecontainer">
-                    <input
-                        type="range"
-                        min="1"
-                        max="20"
-                        class="slider"
-                        id="saltRange"
-                        v-model="saltLevel"
-                        v-on:input="updateSalt"
+            <form>
+                <span class="encryptionType">
+                <h2>Encrption Type:</h2>
+                <select name="encryptions" id="lbET" @click="setEncryptionType('AES')">
+                    <option value="AES">AES</option>
+                    <option value="DES">DES</option>
+                    <option value="TripleDES">TripleDES</option>
+                    <option value="Rabbit">Rabbit</option>
+                </select>
+                </span>
+                <label id="lblDefault"> Default: AES</label>
+                <span class="arcSlides">
+                    <h2>Arc Startup Slides:</h2>
+                    <input type="checkbox" id="cbSlides" value="Enabled" v-model="ckSlidesEnabled" />
+                    <label for="cbSlides" id="lblSlides">Enabled</label>
+                </span>
+                <span class="darkMode">
+                    <h2>Dark Mode:</h2>
+                    <Toggle
+                        @toggle="toggle"
+                        value="Enabled"
+                        v-model="cbDarkMode"
                     />
-                </div>
-                <p type="number" id="salt">Null</p>
-            </span>
-            <p style="margin-left: 3rem; margin-top: 1rem;">
-                Scale: 1-20
-                <br />Default/Recommended: 10 <br />Higher Salt Level = Greater Security & Longer
-                Encryption Time
-            </p>
-            <span class="arc-ad">
-                <h3 id="adHeader">Arc Startup Slides:</h3>
-                <input type="checkbox" id="cbAd" value="Enabled" v-model="ckAdEnabled" />
-                <label for="cbAd" id="lblAd">Enabled</label>
-                <br />
-                <br />
-            </span>
-            <span class="darkmode">
-                <h3 id="themeHeader">Dark Mode:</h3>
-                <Toggle
-                    @toggle="toggle"
-                    id="cbDarkMode"
-                    value="Enabled"
-                    v-model="cbDarkMode"
-                />
-            </span>
-            <span class="buttons">
-                <input
-                    class="main-btn"
-                    id="save"
-                    type="submit"
-                    value="Save"
-                    v-on:click="saveSettings"
-                />
-                <input
-                    class="main-btn"
-                    id="cancel"
-                    type="submit"
-                    value="Cancel"
-                    v-on:click="loadSettings"
-                />
-            </span>
+                </span>
+                <span class="buttons">
+                    <input
+                        class="main-btn"
+                        id="formBtns"
+                        type="submit"
+                        value="Save"
+                        v-on:click="saveSettings"
+                    />
+                    <input
+                        class="main-btn"
+                        id="formBtns"
+                        type="submit"
+                        value="Cancel"
+                        v-on:click="loadSettings"
+                    />
+                </span>
+            </form>
         </div>
 </template>
 
@@ -65,34 +54,39 @@ export default {
     },
     data: () => {
         return {
-            saltLevel: "",
-            ckAdEnabled: "",
+            encryptionType: "",
+            ckSlidesEnabled: "",
             cbDarkMode: "",
         };
     },
     methods: {
         loadSettings() {
-            var slider = document.getElementById("saltRange");
-            var output = document.getElementById("salt");
-
-            let salt = localStorage.getItem("salt");
-            let adEnabled = localStorage.getItem("adEnabled");
+            let encryptionType = localStorage.getItem("encryptionType");
+            let ckSlidesEnabled = localStorage.getItem("slidesEnabled");
             let darkMode = localStorage.getItem("darkMode");
 
-            let saltValue = document.getElementById("salt");
-            let checkedValue = document.getElementById("cbAd");
+           // let encryptionTypeValue = document.getElementById("encryptionType");
+            let checkedValue = document.getElementById("cbSlides");
             let darkModeValue = document.getElementById("cbDarkMode");
 
-            saltValue.value = salt;
-            this.saltLevel = salt;
-            slider.value = salt;
-            output.innerHTML = slider.value;
+            this.encryptionType = encryptionType;
 
-            if (adEnabled == "true") {
+            console.log(document.getElementsByTagName('input')[0].value);
+
+
+            if(encryptionType == "AES"){
+                document.getElementsByTagName('input')[0].focus();
+            }
+            
+            document.getElementsByTagName('input')[0].focus();
+
+            if (ckSlidesEnabled == "true") {
                 checkedValue.checked = true;
+                this.ckSlidesEnabled = true;
                 this.checkedValue = true;
             } else {
                 checkedValue.checked = false;
+                this.ckSlidesEnabled = false;
                 this.checkedValue = false;
             }
 
@@ -105,30 +99,24 @@ export default {
             }
         },
         saveSettings() {
-            let salt = this.saltLevel;
-            let adEnabled = this.ckAdEnabled;
+            let encryptionType = this.encryptionType;
+            let ckSlidesEnabled = this.ckSlidesEnabled;
             let darkMode = this.mode;
 
-            if (salt != undefined) {
-                localStorage.setItem("salt", salt);
+            if (encryptionType != undefined) {
+                localStorage.setItem("encryptionType", encryptionType);
             }
 
-            if (adEnabled != undefined) {
-                localStorage.setItem("adEnabled", adEnabled);
+            if (ckSlidesEnabled != undefined) {
+                localStorage.setItem("slidesEnabled", ckSlidesEnabled);
             }
 
             if (darkMode != undefined) {
                 localStorage.setItem("darkMode", darkMode);
             }
         },
-        updateSalt() {
-            var slider = document.getElementById("saltRange");
-            var output = document.getElementById("salt");
-
-            slider.oninput = function() {
-                output.innerHTML = this.value;
-                this.saltLevel = output.innerHTML;
-            };
+        setEncryptionType(type){
+            this.encryptionType = type;
         },
         toggle() {
             if (this.mode === "dark") {
@@ -146,9 +134,22 @@ export default {
 </script>
 
 <style scoped>
-div {
-    overflow: hidden;
-    height: 90%;
+form{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5rem;
+}
+
+h2{
+    margin-bottom: 1rem;
+}
+
+select{
+    font-size: 20px;
+}
+
+span{
+    margin-top: 4rem;
 }
 
 label {
@@ -160,14 +161,20 @@ p {
     cursor: default;
 }
 
-.salt {
+.encryptionType{
     display: flex;
     flex-direction: row;
 }
 
-.arc-ad {
+.arcSlides {
     display: flex;
     flex-direction: row;
+}
+
+.darkMode{
+    display: flex;
+    flex-direction: row;
+    margin-right: 1rem;
 }
 
 .main-btn{
@@ -175,122 +182,50 @@ p {
 	justify-content: center;
 	border: none;
 	border-radius: 100px;
-	width: 175px;
-	height: 50px;
+	width: 125px;
+	height: 40px;
 	outline: none;
 	font-size: large;
 	font-weight: 550;
 	margin: 5px;
 	cursor: pointer;
-    background-color: white;
+    background-color: aliceblue;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.darkmode {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 3rem;
+.main-btn:hover{
+    background-color: azure;
 }
 
-.buttons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    float: right;
-    margin: 2rem;
+.main-btn:active{
+    background-color: ivory;
 }
 
-#saltHeader {
-    font-size: 22px;
-    margin-top: 3rem;
-    margin-left: 3rem;
-    cursor: default;
-}
-
-#salt {
-    align-self: center;
-    width: 3rem;
-    margin-top: 2.75rem;
-    margin-left: 2rem;
-    opacity: 1;
-    font-size: 22px;
-}
-
-#save {
-    float: right;
-    margin: 5rem;
-}
-
-#adHeader {
-    font-size: 22px;
-    margin-top: 3rem;
-    margin-left: 3rem;
-    cursor: default;
-}
-
-#cbAd {
-    cursor: pointer;
-    justify-self: center;
-    align-self: center;
-    margin-left: 2rem;
-    margin-top: 3.25rem;
-}
-
-#lblAd {
+#lbET{
     margin-left: 1rem;
-    margin-bottom: 0.05rem;
-    align-self: flex-end;
+    margin-top: 0.15rem;
+    margin-bottom: 1rem;
+    width: 7.5rem;
 }
 
-#themeHeader {
-    font-size: 22px;
-    margin-left: 3rem;
-    cursor: default;
+#lblDefault{
+    font-size: 20px;
+    font-style: italic;
 }
 
-#cbDarkMode {
-    cursor: pointer;
-    justify-self: center;
-    align-self: center;
-    margin-left: 2rem;
+#cbSlides{
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 0.5rem;
 }
 
-.slidecontainer {
-    width: 25%;
-    margin-top: 3rem;
-    margin-left: 2rem;
+#lblSlides{
+    margin-top: 0.1rem;
 }
 
-.slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 25px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: 0.25s;
-    transition: opacity 0.25s;
-}
-
-.slider:hover {
-    opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: lightskyblue;
-    cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    background: indigo;
-    cursor: pointer;
+#formBtns{
+    background-color: white;
+    width: 175px;
+    height: 50px;
 }
 </style>

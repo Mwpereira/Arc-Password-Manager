@@ -3,11 +3,11 @@
         <form>
             <span>
                 <label>Website/App:</label>
-                <input autofocus class="input-bar" type="text" v-model="webApp" minlength="3" required/>
+                <input autofocus class="input-bar" type="text" v-model="webApp" minlength="2" required/>
             </span>
             <span>
                 <label>Email:</label>
-                <input autofocus class="input-bar" type="text" v-model="email" minlength="3" required/>
+                <input class="input-bar" type="text" v-model="email" minlength="3" required/>
             </span>
             <span>
                 <label>Username:</label>
@@ -59,12 +59,24 @@ export default {
         exit() {
             this.$emit("clearComponent");
         },
-        encryptString(text, passPhrase){
-            return CryptoJS.AES.encrypt(text, passPhrase).toString();
+        encryptString(text, passPhrase, encryptionType){
+            if (encryptionType == "AES"){
+                return CryptoJS.AES.encrypt(text, passPhrase).toString();
+            }
+            if(encryptionType == "DES"){
+                return CryptoJS.DES.encrypt(text, passPhrase).toString();
+            }
+            if(encryptionType == "TripleDES"){
+                return CryptoJS.TripleDes.encrypt(text, passPhrase).toString();
+            }
+            if(encryptionType == "Rabbit"){
+                return CryptoJS.TripleDes.encrypt(text, passPhrase).toString();
+            }            
         },
         saveAccount() {
             try {
             let details = document.getElementsByTagName("input");
+            let encryptionType = localStorage.getItem("encryptionType");
             let passPhrase = "";
 
             if (localStorage.getItem("passPhrase") != null){
@@ -82,13 +94,13 @@ export default {
             if(details[2].value.length >= 3 && details[3].value.length >= 3 
             && details[4].value.length >= 3 && details[5].value.length >= 3){
 
-            const webApp = this.encryptString(details[2].value, passPhrase);
-            const email = this.encryptString(details[3].value, passPhrase);
-            const username = this .encryptString(details[4].value, passPhrase);
-            const password = this.encryptString(details[5].value, passPhrase);
-            const securityAnswer1 = this.encryptString(details[6].value, passPhrase);
-            const securityAnswer2 = this.encryptString(details[7].value, passPhrase);
-            const securityAnswer3 = this.encryptString(details[8].value, passPhrase);
+            const webApp = this.encryptString(details[2].value, passPhrase, encryptionType);
+            const email = this.encryptString(details[3].value, passPhrase, encryptionType);
+            const username = this .encryptString(details[4].value, passPhrase, encryptionType);
+            const password = this.encryptString(details[5].value, passPhrase, encryptionType);
+            const securityAnswer1 = this.encryptString(details[6].value, passPhrase, encryptionType);
+            const securityAnswer2 = this.encryptString(details[7].value, passPhrase, encryptionType);
+            const securityAnswer3 = this.encryptString(details[8].value, passPhrase, encryptionType);
 
             let account = {
                 webApp: webApp,

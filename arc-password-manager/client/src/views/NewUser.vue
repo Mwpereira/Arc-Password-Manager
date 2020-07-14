@@ -5,7 +5,7 @@
 
         <span class="slideshow-container">
 
-            <input class="close-btn" value="X" onclick="javascript:location.href='/main/home'" />
+            <input class="close-btn" value="X" type="button" onclick="javascript:location.href='/main/home'" />
 		
             <span class="images fade">
 			<img src="../assets/padlock.png" style="width:100%" />

@@ -6,9 +6,9 @@
 		</span>
         <h2>Home</h2>
 		<span @submit.prevent="pageSwitch">
-			<img class="home" src="../assets/home.png"  v-on:click="pageSwitch('Home')">
-			<img class="information" src="../assets/i.png" v-on:click="pageSwitch('Information')" />
-			<img class="settings" src="../assets/settings.png" v-on:click="pageSwitch('Settings')" />	
+			<img class="pageBtns" src="../assets/home.png"  v-on:click="pageSwitch('Home')">
+			<img class="pageBtns" src="../assets/i.png" v-on:click="pageSwitch('Information')" />
+			<img class="pageBtns" id="settings" src="../assets/settings.png" v-on:click="pageSwitch('Settings')" />	
 		</span>
 	</div>
 </template>
@@ -82,28 +82,19 @@ h2{
 	padding: 0.5rem;
 }
 
-.home {
+.pageBtns {
 	width: 2rem;
 	height: 2rem;
 	padding: 0.5rem;
 	cursor: pointer;
-	margin-top: 0.4rem;
+	margin-top: 0.2rem;
 }
 
-.information {
-	width: 2rem;
-	height: 2rem;
-	padding: 0.5rem;
-	cursor: pointer;
-	margin-top: 0.4rem;
+.pageBtns:hover{
+	transform: scale(1.1,1.1);
 }
 
-.settings {
-	width: 2rem;
-	height: 2rem;
-	padding: 0.5rem;
-	cursor: pointer;
-	margin-top: 0.4rem;
+#settings{
 	margin-right: 0.5rem;
 }
 </style>

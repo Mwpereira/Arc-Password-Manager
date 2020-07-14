@@ -1,5 +1,5 @@
 <template>
-    <div class="loadForm" >
+    <div class="loadForm">
         <form>
             <span>
                 <label>Website/App:</label>
@@ -29,12 +29,9 @@
                 <label>Security Answer 3:</label>
                 <label class="value">Empty</label>
             </span>
-            <span >
-                <input class="action-btn" type="submit" value="Edit" @click="editAccount" />
-                <input class="action-btn" type="submit" value="Exit" id="btnExit" @click="exit" />
-                <button type="submit" style="border: 0; background: transparent; outline: none;" @click="deleteAccount">
-                    <img class="dAC" src="../assets/trashbin.png" alt="submit" />
-                </button>
+            <span>
+                <input class="action-btn" type="button" value="Edit" @click="editAccount" />
+                <input class="action-btn" type="button" value="Exit" id="btnExit" @click="exit" />
             </span>
         </form>
     </div>
@@ -60,30 +57,25 @@ export default {
     },
     methods: {
         editAccount(){
-
+            this.$emit('editForm');
+            store.commit('editForm');
         },
         exit() {
             this.$emit("clearComponent");
-            store.commit('clearForm');
         },
-        decrypt(text, passPhrase){
-            return CryptoJS.AES.decrypt(text, passPhrase).toString(CryptoJS.enc.Utf8);
-        },
-        deleteAccount(){
-            let accountsList = store.getters.accounts;
-            let loadAccount = store.getters.loadForm;
-            let passPhraseCode = store.getters.passPhrase;
-
-            let i = 0;
-    
-            for (i = 0; i < accountsList.length; i++){        
-                if(this.decrypt(accountsList[i].webApp, passPhraseCode) == loadAccount){
-                    store.commit('deleteAccount', i);
-                    break;
-                }
+        decrypt(text, passPhrase, encryptionType){
+            if (encryptionType == "AES"){
+                return CryptoJS.AES.decrypt(text, passPhrase).toString(CryptoJS.enc.Utf8);
             }
-  
-            this.exit();
+            if(encryptionType == "DES"){
+                return CryptoJS.DES.decrypt(text, passPhrase).toString(CryptoJS.enc.Utf8);
+            }
+            if(encryptionType == "TripleDES"){
+                return CryptoJS.TripleDes.decrypt(text, passPhrase).toString(CryptoJS.enc.Utf8);
+            }
+            if(encryptionType == "Rabbit"){
+                return CryptoJS.TripleDes.decrypt(text, passPhrase).toString(CryptoJS.enc.Utf8);
+            }    
         },
         loadAccount() {
             try {                
@@ -92,32 +84,32 @@ export default {
             let accountsList = store.getters.accounts;
             let passPhraseCode = store.getters.passPhrase;
             let loadAccount = store.getters.loadForm;
+            let encryptionType = localStorage.getItem("encryptionType");
             let account;
 
             let i = 0;
     
-            for (i = 0; i < accountsList.length; i++){
-                
-                if(this.decrypt(accountsList[i].webApp, passPhraseCode) == loadAccount){
+            for (i = 0; i < accountsList.length; i++){     
+                if(this.decrypt(accountsList[i].webApp, passPhraseCode, encryptionType) == loadAccount){
                     account = accountsList[i];
                     break;
                 }
             }
 
-            details[1].innerText = this.decrypt(account.webApp, passPhraseCode);
-            details[3].innerText = this.decrypt(account.email, passPhraseCode);
-            details[5].innerText = this.decrypt(account.username, passPhraseCode);
-            details[7].innerText = this.decrypt(account.password, passPhraseCode);
+            details[1].innerText = this.decrypt(account.webApp, passPhraseCode, encryptionType);
+            details[3].innerText = this.decrypt(account.email, passPhraseCode, encryptionType);
+            details[5].innerText = this.decrypt(account.username, passPhraseCode, encryptionType);
+            details[7].innerText = this.decrypt(account.password, passPhraseCode, encryptionType);
 
             let tempSCA;
 
-            tempSCA = this.decrypt(account.securityAnswer1, passPhraseCode);
+            tempSCA = this.decrypt(account.securityAnswer1, passPhraseCode, encryptionType);
             if(tempSCA != ""){details[9].innerText = tempSCA}
 
-            tempSCA = this.decrypt(account.securityAnswer2, passPhraseCode);
+            tempSCA = this.decrypt(account.securityAnswer2, passPhraseCode, encryptionType);
             if(tempSCA != ""){details[11].innerText = tempSCA}
 
-            tempSCA = this.decrypt(account.securityAnswer3, passPhraseCode);
+            tempSCA = this.decrypt(account.securityAnswer3, passPhraseCode, encryptionType);
             if(tempSCA != ""){details[13].innerText = tempSCA}
 
             }
@@ -187,14 +179,6 @@ form{
 	cursor: pointer;
     background-color: white;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.dAC{
-    margin-top: -0.1rem;
-    margin-left: 0.5rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    cursor: pointer;
 }
 
 .inputSC{
