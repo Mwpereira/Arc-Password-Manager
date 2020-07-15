@@ -69,7 +69,6 @@ h2{
 	font-size: 30px;
 	cursor: default;
     margin-top: 0.5rem;
-	margin-left: 1rem;
 }
 
 .menu{

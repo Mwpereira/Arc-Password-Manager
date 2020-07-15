@@ -3,27 +3,25 @@
             <form>
                 <span class="encryptionType">
                 <h2>Encrption Type:</h2>
-                <select name="encryptions" id="lbET" @click="setEncryptionType('AES')">
+                <select name="encryptions" id="lbET" @click="setEncryptionType()">
                     <option value="AES">AES</option>
                     <option value="DES">DES</option>
                     <option value="TripleDES">TripleDES</option>
                     <option value="Rabbit">Rabbit</option>
                 </select>
                 </span>
-                <label id="lblDefault"> Default: AES</label>
+                <label id="lblDefault">Default: AES</label>
+                <label id="lblDefault">Requires A Longer Save Time To Convert Your Already Saved Data</label>
                 <span class="arcSlides">
                     <h2>Arc Startup Slides:</h2>
                     <input type="checkbox" id="cbSlides" value="Enabled" v-model="ckSlidesEnabled" />
                     <label for="cbSlides" id="lblSlides">Enabled</label>
                 </span>
-                <span class="darkMode">
-                    <h2>Dark Mode:</h2>
-                    <Toggle
-                        @toggle="toggle"
-                        value="Enabled"
-                        v-model="cbDarkMode"
-                    />
+                <span class="dAD">
+                    <h2 id="lbldAD">Delete All Data</h2>
+                    <input class="main-btn" id="deleteBtn" type="button" value="Delete Data" />
                 </span>
+                <label id="lblDefault">Action Cannot Be Undone</label>
                 <span class="buttons">
                     <input
                         class="main-btn"
@@ -45,41 +43,29 @@
 </template>
 
 <script>
-import Toggle from "@/components/Toggle";
-
 export default {
     name: "Settings",
-    components: {
-        Toggle,
-    },
     data: () => {
         return {
             encryptionType: "",
             ckSlidesEnabled: "",
-            cbDarkMode: "",
         };
     },
     methods: {
         loadSettings() {
             let encryptionType = localStorage.getItem("encryptionType");
             let ckSlidesEnabled = localStorage.getItem("slidesEnabled");
-            let darkMode = localStorage.getItem("darkMode");
 
            // let encryptionTypeValue = document.getElementById("encryptionType");
             let checkedValue = document.getElementById("cbSlides");
-            let darkModeValue = document.getElementById("cbDarkMode");
 
             this.encryptionType = encryptionType;
-
-            console.log(document.getElementsByTagName('input')[0].value);
-
-
-            if(encryptionType == "AES"){
-                document.getElementsByTagName('input')[0].focus();
+            document.getElementById('lbET').value = encryptionType;
+/*
+            if(this.encryptionType != encryptionType){
+                this.convertEncryptions();
             }
-            
-            document.getElementsByTagName('input')[0].focus();
-
+*/
             if (ckSlidesEnabled == "true") {
                 checkedValue.checked = true;
                 this.ckSlidesEnabled = true;
@@ -88,14 +74,6 @@ export default {
                 checkedValue.checked = false;
                 this.ckSlidesEnabled = false;
                 this.checkedValue = false;
-            }
-
-            if (darkMode == "dark") {
-                darkModeValue.checked = "dark";
-                this.mode = "dark";
-            } else {
-                darkModeValue.checked = "light";
-                this.mode = "light";
             }
         },
         saveSettings() {
@@ -115,16 +93,12 @@ export default {
                 localStorage.setItem("darkMode", darkMode);
             }
         },
-        setEncryptionType(type){
-            this.encryptionType = type;
-        },
-        toggle() {
-            if (this.mode === "dark") {
-                this.mode = "light";
-            } else {
-                this.mode = "dark";
+        setEncryptionType(){
+            var e = document.getElementById("lbET");
+            var type = e.options[e.selectedIndex].text;
+            if(this.encryptionType != type){
+                this.encryptionType = type;
             }
-            this.$emit("toggle");
         },
     },
     mounted() {
@@ -171,10 +145,9 @@ p {
     flex-direction: row;
 }
 
-.darkMode{
+.dAD{
     display: flex;
     flex-direction: row;
-    margin-right: 1rem;
 }
 
 .main-btn{
@@ -189,16 +162,12 @@ p {
 	font-weight: 550;
 	margin: 5px;
 	cursor: pointer;
-    background-color: aliceblue;
+    background-color: white;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.main-btn:hover{
-    background-color: azure;
-}
-
-.main-btn:active{
-    background-color: ivory;
+#lbldAD{
+    margin-top: 0.5rem;
 }
 
 #lbET{
@@ -221,6 +190,11 @@ p {
 
 #lblSlides{
     margin-top: 0.1rem;
+}
+
+#deleteBtn{
+    margin-left: 1rem;
+    height: 30px;
 }
 
 #formBtns{

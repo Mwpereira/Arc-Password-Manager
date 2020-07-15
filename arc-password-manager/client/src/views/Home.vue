@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <Accounts @clearComponent="clearComponent" @loadForm="loadForm"/>
-        <span>
+        <span class="components">
             <span class="buttons">
                 <input
                     @click="component = 'AddForm'"
@@ -18,7 +18,35 @@
                     value="+ Auto Generate Password"
                 />
             </span>
-            <component @editForm="editForm" @clearComponent="clearComponent" :is="component"></component>
+            <component id="form" @editForm="editForm" @clearComponent="clearComponent" :is="component"></component>
+        </span>
+        <span class="userClass">
+        <h1 id="header">Computer Details</h1>
+            <span class="userData">
+                <h2>Arc Username:</h2>
+                <h2>{{user}}</h2>
+            </span>
+            <span class="userData">
+                <h2>Public IPv4:</h2>
+                <h2>{{userIP}}</h2>
+            </span>
+            <span class="userData">
+                <h2>Location:</h2>
+                <h2>{{userLocation}}</h2>
+            </span>
+            <span>
+                <br>
+                <br>
+                <br>
+                <h2>Recommended VPNs Include</h2>
+                <h2>ExpressVPN</h2>
+                <h2>NordVPN</h2>
+                <h2>CyberGhost</h2>
+                <h2>ProtonVPN</h2>
+                <h2>VyprVPN</h2>
+                <br>
+                <h3>Protect Yourself. Get a VPN.</h3>
+            </span>
         </span>
     </div>
 </template>
@@ -29,13 +57,19 @@ import AddForm from "@/components/AddForm";
 import AutoGenPass from "@/components/AutoGeneratePassword";
 import EditForm from "@/components/EditForm";
 import LoadForm from "@/components/LoadForm";
+import store from "@/store";
+
+import axios from 'axios';
 
 export default {
     name: "Home",
-    components: { Accounts, AddForm, AutoGenPass, EditForm, LoadForm },
+    components: { Accounts, AddForm, AutoGenPass, EditForm, LoadForm},
     data: () => {
         return {
             component: "",
+            user: "",
+            userIP: "",
+            userLocation: "",
         };
     },
     methods: {
@@ -47,9 +81,48 @@ export default {
         },
         loadForm(){
             this.component = "LoadForm";  
+        },
+        location(){
+            try
+            {
+            var ip = '99.227.56.175'
+            var access_key = '9c8a0ad01218d47df2c7ac36e8c38421';
+
+            axios.get('http://api.ipstack.com/' + ip + '?access_key=' + access_key)
+                .then((response) => {
+                    this.userLocation = response.data.city + ", " + response.data.country_name;
+                })
+                .catch(function (error) {
+                console.log(error);
+                })
+            }
+            catch(e){
+                console.log(e);
+            }       
+        },
+        publicIPv4() {
+            try
+            {
+                var http = require('http');
+
+                http.get({'host': 'api.ipify.org', 'port': 80, 'path': '/'}, (resp) => {
+                resp.on('data', (ip) => {
+                    this.userIP = ip.toString();
+                });
+                });
+            }
+            catch(e){
+                console.log(e);
+            }
         }
     },
-    mounted() {},
+    mounted() {
+        console.log(store.getters.user);
+        this.user = store.getters.user;
+        this.user = "Mwp";
+        this.publicIPv4();
+        this.location();
+    },
 };
 </script>   
 
@@ -58,24 +131,58 @@ div {
     display: flex;
     flex-direction: row;
     height: 100%;
+    width: 100%;
 }
 
 span {
     justify-content: flex-start;
 }
 
-h2{
+h1{
+    font-size: 26px;
+}
+
+h2 {
+    font-family: "Varela Round", sans-serif;
+    font-size: 20px;
     color: black;
-    font-size: 30px;
+    text-align: center;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+h3{
+    text-align: center;
+    margin-top: 2rem;
+    font-style: italic;
 }
 
 .home{
     background-color: whitesmoke;
+    width: auto;
 }
 
-.buttons {
+.components{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userClass{
+    width: 90vh;
+    background: rgba(119, 119, 119, 0.05);
+}
+
+.userData{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+}
+
+.buttons{
+    align-items: left;
+    margin-left: -1rem;
 }
 
 .main-btn{
@@ -123,5 +230,23 @@ h2{
     cursor: pointer;
     margin-top: 1.5rem;
     margin-left: 1rem;
+}
+
+#header{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1200px) {
+    .userClass {
+        display: none;
+    }
+}
+
+@media only screen and (min-height: 900px) {
+    #form{
+        margin-top: 5rem;
+    }
 }
 </style>

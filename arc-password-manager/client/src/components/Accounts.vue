@@ -71,8 +71,6 @@ export default {
                     });
                 });
             }
-
-            
         }
     },
     mounted() {
@@ -94,7 +92,6 @@ h2:hover {
 }
 
 button{
-    background: red;
     widows: 100%;
     z-index: 99;
 }

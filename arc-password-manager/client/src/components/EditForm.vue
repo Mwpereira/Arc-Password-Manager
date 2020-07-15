@@ -254,12 +254,13 @@ form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    text-align: center;
     height: auto;
     width: auto;
-    margin-left: 1.5rem;
     margin-top: 1rem;
     background-color: rgb(229, 229, 229);
+    border: none;
+	border-radius: 10px;
 }
 
 .action-btn{
@@ -305,6 +306,7 @@ form{
 .dAC{
     margin-top: -0.1rem;
     margin-left: 0.5rem;
+    padding-right: 1rem;
     width: 2.5rem;
     height: 2.5rem;
     cursor: pointer;

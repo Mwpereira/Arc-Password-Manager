@@ -21,6 +21,9 @@ export default {
 </script>
 
 <style scoped>
+.main{
+	background: white;
+}
 .validation-form {
 	width: 22.5rem;
 	border-radius: 15px;

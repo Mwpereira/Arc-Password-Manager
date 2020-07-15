@@ -33,6 +33,7 @@
 
 <script>
 import bcrypt from "bcryptjs";
+import store from "@/store";
 
 export default {
     name: "Login",
@@ -49,11 +50,12 @@ export default {
 
             let username = form.children[0].value;
             let password = form.children[1].value;
-            console.log(username);
+
             if (username != "" && password != "") {
                 try {
                     if (localStorage.getItem(username) != null) {
                         if (await bcrypt.compare(password, localStorage.getItem(username))) {
+                            await store.commit('setUser', username);
                             if (localStorage.getItem("slidesEnabled") == "false") {
                                 window.location.href = "/main/home";
                             } else {

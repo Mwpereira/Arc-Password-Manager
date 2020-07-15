@@ -113,7 +113,6 @@ export default {
 <style scoped>
 span {
     padding: 2vh;
-    margin-left: -2.2%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -151,11 +150,11 @@ form{
     align-items: center;
     height: auto;
     width: auto;
-    margin-left: 1.5rem;
     margin-top: 1rem;
     background-color: rgb(229, 229, 229);
     justify-content: center;
- 
+    border: none;
+	border-radius: 10px;
 }
 
 .action-btn{

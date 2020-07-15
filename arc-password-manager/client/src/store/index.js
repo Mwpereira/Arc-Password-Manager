@@ -8,6 +8,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user: "",
     account: "",
     accounts: [],
     passPhrase: "",
@@ -55,12 +56,11 @@ export default new Vuex.Store({
     passPhrase(state, payload){
       state.passPhrase = payload;
     },
+    setUser(state, payload){
+      state.user = payload;
+    },
     updateAccount(state, payload){
       state.accounts.splice(payload.index, 1, payload.accountUpdated);
-      console.log(state.accounts[0].webApp);
-      console.log(payload.index);
-      console.log(payload.accountUpdated.webApp);
-      console.log("MICHASJKDL");
       localStorage.setItem("accounts", JSON.stringify(state.accounts));
       Accounts.methods.updateAccounts();
     },
@@ -90,6 +90,9 @@ export default new Vuex.Store({
     passPhrase(state, payload){
       state.commit('passPhrase', payload);
     },
+    setUser(state, payload){
+      state.commit('setUser', payload);
+    },
     updateAccount(state, payload){
       state.commit('updateAccount', payload);
     },
@@ -110,7 +113,9 @@ export default new Vuex.Store({
     passPhrase(state){
       return state.passPhrase;
     },
-    
+    user(state){
+      return state.user;
+    }
   },
   modules: {
   }

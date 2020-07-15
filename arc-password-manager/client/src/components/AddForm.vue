@@ -131,8 +131,7 @@ span {
     display: flex;
     flex-direction: row;
     margin-bottom: 0.5rem;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: center; 
 }
 
 h1 {
@@ -159,12 +158,12 @@ form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
     height: auto;
-    width: auto;
-    margin-left: 1.5rem;
+    width: 500px;
     margin-top: 1rem;
     background-color: rgb(229, 229, 229);
+    border: none;
+	border-radius: 10px;
 }
 
 .action-btn{

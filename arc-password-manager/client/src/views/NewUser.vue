@@ -18,8 +18,8 @@
             </span>
 
             <span class="images fade">
-			<img src="../assets/salt.png" style="width:100%" />
-			<div class="text">Choose your custom level of 'salt' to go with your encryption and make it extra secure for your insurance.</div>
+			<img src="../assets/encryption.png" style="width:100%;" />
+			<div class="text">Choose your choice of encryption to protect your data and make it extra secure for your insurance.</div>
             </span>
         
         </span>
