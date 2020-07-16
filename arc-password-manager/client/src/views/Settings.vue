@@ -18,10 +18,10 @@
                     <label for="cbSlides" id="lblSlides">Enabled</label>
                 </span>
                 <span class="dAD">
-                    <h2 id="lbldAD">Delete All Data</h2>
-                    <input class="main-btn" id="deleteBtn" type="button" value="Delete Data" />
+                    <h2 id="lbldAD">Delete All Arc Data</h2>
+                    <input class="main-btn" id="deleteBtn" type="button" value="Delete Data" @click="deleteArcData"/>
                 </span>
-                <label id="lblDefault">Action Cannot Be Undone</label>
+                <label id="lblDefault">Action Cannot Be Undone - App Will Exit</label>
                 <span class="buttons">
                     <input
                         class="main-btn"
@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import store from "@/store";
+
 export default {
     name: "Settings",
     data: () => {
@@ -52,11 +54,15 @@ export default {
         };
     },
     methods: {
+        deleteArcData(){
+            localStorage.clear();
+            const remote = require('electron').remote
+            let w = remote.getCurrentWindow()
+            w.close()
+        },
         loadSettings() {
-            let encryptionType = localStorage.getItem("encryptionType");
-            let ckSlidesEnabled = localStorage.getItem("slidesEnabled");
-
-           // let encryptionTypeValue = document.getElementById("encryptionType");
+            let encryptionType = store.getters.encryptionType;
+            let ckSlidesEnabled = store.getters.slidesEnabled;
             let checkedValue = document.getElementById("cbSlides");
 
             this.encryptionType = encryptionType;
@@ -79,7 +85,6 @@ export default {
         saveSettings() {
             let encryptionType = this.encryptionType;
             let ckSlidesEnabled = this.ckSlidesEnabled;
-            let darkMode = this.mode;
 
             if (encryptionType != undefined) {
                 localStorage.setItem("encryptionType", encryptionType);
@@ -87,10 +92,6 @@ export default {
 
             if (ckSlidesEnabled != undefined) {
                 localStorage.setItem("slidesEnabled", ckSlidesEnabled);
-            }
-
-            if (darkMode != undefined) {
-                localStorage.setItem("darkMode", darkMode);
             }
         },
         setEncryptionType(){

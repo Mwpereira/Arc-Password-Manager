@@ -82,9 +82,9 @@ export default {
                    
             let details = document.getElementsByTagName("label");
             let accountsList = store.getters.accounts;
-            let passPhraseCode = store.getters.passPhrase;
             let loadAccount = store.getters.loadForm;
-            let encryptionType = localStorage.getItem("encryptionType");
+            let encryptionType = store.getters.encryptionType;
+            let passPhraseCode = store.getters.passPhrase;
             let account;
 
             let i = 0;

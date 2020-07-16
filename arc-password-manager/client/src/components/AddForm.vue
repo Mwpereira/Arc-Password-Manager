@@ -75,21 +75,10 @@ export default {
         },
         saveAccount() {
             try {
-            let details = document.getElementsByTagName("input");
-            let encryptionType = localStorage.getItem("encryptionType");
-            let passPhrase = "";
 
-            if (localStorage.getItem("passPhrase") != null){
-                passPhrase = localStorage.getItem("passPhrase");
-            }
-            else{
-                var length = 32;
-                var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*./'";
-                for (var i = 0, n = charset.length; i < length; ++i) {
-                passPhrase += charset.charAt(Math.floor(Math.random() * n));
-                }
-                localStorage.setItem("passPhrase", passPhrase);       
-            }
+            let details = document.getElementsByTagName("input");
+            let encryptionType = store.getters.encryptionType;
+            let passPhrase = store.getters.passPhrase;
 
             if(details[2].value.length >= 3 && details[3].value.length >= 3 
             && details[4].value.length >= 3 && details[5].value.length >= 3){
@@ -112,8 +101,14 @@ export default {
                 securityAnswer3: securityAnswer3,
             };
 
+            console.log();
+
             store.commit('addAccount', account);
-            this.exit();
+            
+         //   store.commit('updateUserData');
+            console.log(account);
+
+            //this.exit();
             }
             }
             catch(e){

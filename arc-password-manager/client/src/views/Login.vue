@@ -24,16 +24,18 @@
                 <label id="signupArc-label">Need to create an account?</label>
                 <label id="signupArc-btn" onclick="javascript:location.href='/signup'">Sign up</label>
             </span>
+            <span id="errorMessage">
             <p class="login-error-message" v-if="errorMessage != ''">
                 {{ errorMessage }}
             </p>
+            </span>
         </form>
     </div>
 </template>
 
 <script>
 import bcrypt from "bcryptjs";
-import store from "@/store";
+import CryptoJS from "crypto-js";
 
 export default {
     name: "Login",
@@ -51,24 +53,34 @@ export default {
             let username = form.children[0].value;
             let password = form.children[1].value;
 
+            let errorMessage = "Username or Password Is Incorrect";
+
             if (username != "" && password != "") {
                 try {
                     if (localStorage.getItem(username) != null) {
                         if (await bcrypt.compare(password, localStorage.getItem(username))) {
-                            await store.commit('setUser', username);
-                            if (localStorage.getItem("slidesEnabled") == "false") {
-                                window.location.href = "/main/home";
+                            let encryptedData = localStorage.getItem("$data."+username);
+                            let arcData = CryptoJS.AES.decrypt(encryptedData, password).toString(CryptoJS.enc.Utf8);
+                            
+                            arcData = arcData.split(",");
+                            arcData[1] = arcData[1]+password;
+
+                            sessionStorage.setItem("$data."+username, arcData);
+                            sessionStorage.setItem("user", username);
+
+                            if (arcData[3] == "false") {
+                                this.$router.push("/main/home");
                             } else {
-                                window.location.href = "/newUser";
+                                this.$router.push("/newUser");
                             }
                         } else {
-                            this.errorMessage = "Username or Password Is Incorrect";
+                            this.errorMessage = errorMessage;
                         }
                     } else {
-                        this.errorMessage = "Username or Password Is Incorrect";
+                        this.errorMessage = errorMessage;
                     }
-                } catch {
-                    this.errorMessage = "Username or Password Is Incorrect";
+                } catch(e) {
+                    console.log(e);
                 }
             }
         },
@@ -153,9 +165,14 @@ p {
    height: 125px;
 }
 
+#errorMessage{
+    height: 5vh;
+    transform: translate(0px, 20px);
+}
+
 #login{
     margin-top: 2rem;  
-    background: linear-gradient(to right, rgb(46, 126, 255), #0040b6);
+    background: linear-gradient(to right, rgb(146, 146, 255), rgb(0, 0, 255));
     color: white;
 }
 

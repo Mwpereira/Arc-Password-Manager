@@ -34,14 +34,17 @@
             <label id="loginArc-label">Already created an account?</label>
             <label id="loginArc-btn" value="Login" onclick="javascript:location.href='/login'">Login</label>
         </span>
+        <span id="errorMessage">
         <p class="signup-error-message" v-if="errorMessage != ''">
             {{ errorMessage }}
         </p>
+        </span>
     </div>
 </template>
 
 <script>
 import bcrypt from "bcryptjs";
+import CryptoJS from "crypto-js";
 
 export default {
     name: "Signup",
@@ -62,6 +65,8 @@ export default {
                 let password = form.children[1].value;
                 let confirmpassword = form.children[2].value;
 
+                let errorMessage = "Signup Error";
+
                 if (username != "" && password != "" && confirmpassword != "") {
                     if (
                         password.localeCompare(confirmpassword) == 0 &&
@@ -70,19 +75,34 @@ export default {
                         const salt = await bcrypt.genSaltSync();
                         const hashedPassword = await bcrypt.hashSync(password, salt);
 
+                        let passPhrase = "";
+
+                        var length = 32;
+                        var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*./'";
+                        for (var i = 0, n = charset.length; i < length; ++i) {
+                            passPhrase += charset.charAt(Math.floor(Math.random() * n));
+                        }
+
+                        let userData = [];
+                        userData.push([]);
+                        userData.push(passPhrase);
+                        userData.push("AES");
+                        userData.push("true");
+
+                        userData = CryptoJS.AES.encrypt(userData.toString(), password).toString();
+                        
                         localStorage.setItem(username, hashedPassword);
-                        localStorage.setItem("encryptionType", "AES");
-                        localStorage.setItem("slidesEnabled", "true");
-                        localStorage.setItem("darkMode", "false");
+                        localStorage.setItem(("$data."+username),userData);                        
 
                         window.location.href = "/login";
+
                     } else if (password.localeCompare(confirmpassword) != 0) {
-                        this.errorMessage = "Signup Error";
+                        this.errorMessage = errorMessage;
                     } else {
-                        this.errorMessage = "Signup Error";
+                        this.errorMessage = errorMessage;
                     }
                 } else {
-                    this.errorMessage = "Signup Error";
+                    this.errorMessage = errorMessage;
                 }
             } catch(e) {
                 console.log(e);
@@ -120,12 +140,17 @@ p {
 
 #register{
     margin-top: 2rem;  
-    background: linear-gradient(to right, rgb(255, 0, 0), #b60000);
+    background: linear-gradient(to right, rgb(255, 0, 0), rgb(155, 0, 0));
     color: white;
 }
 
 #inputs{
    height: 175px;
+}
+
+#errorMessage{
+    height: 5vh;
+    transform: translate(0px, 20px);
 }
 
 #loginItems{

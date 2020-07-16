@@ -73,6 +73,26 @@ export default {
         };
     },
     methods: {
+        arcStartup(){
+            let username = sessionStorage.getItem("user");
+            let data = sessionStorage.getItem("$data."+username);
+            
+            this.user = username;
+            store.commit("setUser", username);
+         
+            let acc = [];
+            store.commit("accounts", acc);
+
+            if(data[0]!=""){
+                store.commit("accounts", acc);
+            }
+
+            store.commit("setPassPhrase", data[1]);
+            store.commit("setEncryptionType", data[2]);
+            store.commit("setSlidesEnabled", data[3]);
+            console.log(store.getters.passPhrase);
+
+        },
         clearComponent() {
             this.component = "";
         },
@@ -117,9 +137,7 @@ export default {
         }
     },
     mounted() {
-        console.log(store.getters.user);
-        this.user = store.getters.user;
-        this.user = "Mwp";
+        this.arcStartup();
         this.publicIPv4();
         this.location();
     },

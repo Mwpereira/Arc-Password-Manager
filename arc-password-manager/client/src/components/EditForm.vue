@@ -94,7 +94,7 @@ export default {
             let accountsList = store.getters.accounts;
             let loadAccount = store.getters.loadForm;
             let passPhraseCode = store.getters.passPhrase;
-            let encryptionType = localStorage.getItem("encryptionType");
+            let encryptionType = store.getters.encryptionType;
 
             let i = 0;
     
@@ -113,9 +113,9 @@ export default {
             try {                
                    
             let accountsList = store.getters.accounts;
-            let passPhraseCode = store.getters.passPhrase;
             let loadAccount = store.getters.loadForm;
-            let encryptionType = localStorage.getItem("encryptionType");
+            let passPhraseCode = store.getters.passPhrase;
+            let encryptionType = store.getters.encryptionType;
             let account;
 
             let i = 0;
@@ -154,20 +154,8 @@ export default {
         saveAccount() {
             try {
             let details = document.getElementsByTagName("input");
-            let encryptionType = localStorage.getItem("encryptionType");
-            let passPhraseCode = "";
-
-            if (localStorage.getItem("passPhrase") != null){
-                passPhraseCode = localStorage.getItem("passPhrase");
-            }
-            else{
-                var length = 32;
-                var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*./'";
-                for (var i = 0, n = charset.length; i < length; ++i) {
-                passPhraseCode += charset.charAt(Math.floor(Math.random() * n));
-                }
-                localStorage.setItem("passPhrase", passPhraseCode);       
-            }
+            let passPhraseCode = store.getters.passPhrase;
+            let encryptionType = store.getters.encryptionType;
 
             if(details[2].value.length >= 3 && details[3].value.length >= 3 
             && details[4].value.length >= 3 && details[5].value.length >= 3){

@@ -33,11 +33,6 @@ export default {
         updateAccounts(){
             let accountsList = store.getters.accounts;
             let passPhraseCode = store.getters.passPhrase;
-
-            if(store.getters.encryptionType == ""){
-                store.commit('encryptionType', localStorage.getItem("encryptionType"));
-            }
-
             let encryptionType = store.getters.encryptionType;
 
             if(encryptionType == "AES"){
