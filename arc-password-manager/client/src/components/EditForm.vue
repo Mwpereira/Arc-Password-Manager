@@ -32,9 +32,7 @@
             <span>
                 <input class="action-btn" type="submit" value="Save" @click="saveAccount" />
                 <input class="action-btn" type="submit" value="Cancel" @click="exit" />
-                <label type="submit" value>
                 <img class="dAC" src="../assets/trashbin.png" @click="deleteAccount" />
-                </label>
             </span>
         </form>
     </div>
@@ -62,7 +60,7 @@ export default {
         exit() {
             this.$emit("clearComponent");
         },
-        encryptString(text, passPhrase, encryptionType){
+        encrypt(text, passPhrase, encryptionType){
             if (encryptionType == "AES"){
                 return CryptoJS.AES.encrypt(text, passPhrase).toString();
             }
@@ -105,6 +103,7 @@ export default {
             }
             
             store.commit('deleteAccount', i);
+            store.commit('updateUserData');
             window.location.reload();
 
             this.exit();
@@ -160,13 +159,13 @@ export default {
             if(details[2].value.length >= 3 && details[3].value.length >= 3 
             && details[4].value.length >= 3 && details[5].value.length >= 3){
 
-            const webApp = this.encryptString(details[2].value, passPhraseCode, encryptionType);
-            const email = this.encryptString(details[3].value, passPhraseCode, encryptionType);
-            const username = this .encryptString(details[4].value, passPhraseCode, encryptionType);
-            const password = this.encryptString(details[5].value, passPhraseCode, encryptionType);
-            const securityAnswer1 = this.encryptString(details[6].value, passPhraseCode, encryptionType);
-            const securityAnswer2 = this.encryptString(details[7].value, passPhraseCode, encryptionType);
-            const securityAnswer3 = this.encryptString(details[8].value, passPhraseCode, encryptionType);
+            const webApp = this.encrypt(details[2].value, passPhraseCode, encryptionType);
+            const email = this.encrypt(details[3].value, passPhraseCode, encryptionType);
+            const username = this .encrypt(details[4].value, passPhraseCode, encryptionType);
+            const password = this.encrypt(details[5].value, passPhraseCode, encryptionType);
+            const securityAnswer1 = this.encrypt(details[6].value, passPhraseCode, encryptionType);
+            const securityAnswer2 = this.encrypt(details[7].value, passPhraseCode, encryptionType);
+            const securityAnswer3 = this.encrypt(details[8].value, passPhraseCode, encryptionType);
 
             let account = {
                 webApp: webApp,
@@ -194,6 +193,7 @@ export default {
             }
 
             store.commit('updateAccount', tuple);
+            store.commit('updateUserData');
             this.exit();
             }
             }

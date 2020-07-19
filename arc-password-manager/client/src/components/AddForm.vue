@@ -101,13 +101,9 @@ export default {
                 securityAnswer3: securityAnswer3,
             };
 
-            console.log();
-
             store.commit('addAccount', account);
+            store.commit('updateUserData');
             
-         //   store.commit('updateUserData');
-            console.log(account);
-
             //this.exit();
             }
             }

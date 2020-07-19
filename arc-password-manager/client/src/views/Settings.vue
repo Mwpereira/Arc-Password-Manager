@@ -44,6 +44,7 @@
 
 <script>
 import store from "@/store";
+import CryptoJS from "crypto-js";
 
 export default {
     name: "Settings",
@@ -54,11 +55,57 @@ export default {
         };
     },
     methods: {
+        convertEncryptions(fromEncryption, toEncryption){
+            let accounts = store.getters.encryptionType;
+            let passPhrase = store.getters.passPhrase;
+            let newAccounts = [];
+            accounts.forEach(element => {
+                newAccounts.push({
+                    webApp: this.encrypt(this.decrypt(element.webApp, passPhrase, fromEncryption),passPhrase, toEncryption),
+                    email: this.encrypt(this.decrypt(element.email, passPhrase, fromEncryption),passPhrase, toEncryption),
+                    username: this.encrypt(this.decrypt(element.username, passPhrase, fromEncryption),passPhrase, toEncryption),
+                    password: this.encrypt(this.decrypt(element.password, passPhrase, fromEncryption),passPhrase, toEncryption),
+                    securityAnswer1: this.encrypt(this.decrypt(element.securityAnswer1, passPhrase, fromEncryption),passPhrase, toEncryption),
+                    securityAnswer2: this.encrypt(this.decrypt(element.securityAnswer2, passPhrase, fromEncryption),passPhrase, toEncryption),
+                    securityAnswer3: this.encrypt(this.decrypt(element.securityAnswer3, passPhrase, fromEncryption),passPhrase, toEncryption)
+                });
+            });
+            sessionStorage.setItem("done", "yes");
+            store.commit('setAccounts', newAccounts);
+        },
+        decrypt(text, passPhrase, encryptionType){
+            if (encryptionType == "AES"){
+                return CryptoJS.AES.decrypt(text, passPhrase).toString(CryptoJS.enc.Utf8);
+            }
+            if(encryptionType == "DES"){
+                return CryptoJS.DES.decrypt(text, passPhrase).toString(CryptoJS.enc.Utf8);
+            }
+            if(encryptionType == "TripleDES"){
+                return CryptoJS.TripleDes.decrypt(text, passPhrase).toString(CryptoJS.enc.Utf8);
+            }
+            if(encryptionType == "Rabbit"){
+                return CryptoJS.TripleDes.decrypt(text, passPhrase).toString(CryptoJS.enc.Utf8);
+            }    
+        },
         deleteArcData(){
             localStorage.clear();
             const remote = require('electron').remote
             let w = remote.getCurrentWindow()
             w.close()
+        },
+        encrypt(text, passPhrase, encryptionType){
+            if (encryptionType == "AES"){
+                return CryptoJS.AES.encrypt(text, passPhrase).toString();
+            }
+            if(encryptionType == "DES"){
+                return CryptoJS.DES.encrypt(text, passPhrase).toString();
+            }
+            if(encryptionType == "TripleDES"){
+                return CryptoJS.TripleDes.encrypt(text, passPhrase).toString();
+            }
+            if(encryptionType == "Rabbit"){
+                return CryptoJS.TripleDes.encrypt(text, passPhrase).toString();
+            }            
         },
         loadSettings() {
             let encryptionType = store.getters.encryptionType;
@@ -67,11 +114,7 @@ export default {
 
             this.encryptionType = encryptionType;
             document.getElementById('lbET').value = encryptionType;
-/*
-            if(this.encryptionType != encryptionType){
-                this.convertEncryptions();
-            }
-*/
+
             if (ckSlidesEnabled == "true") {
                 checkedValue.checked = true;
                 this.ckSlidesEnabled = true;
@@ -85,14 +128,19 @@ export default {
         saveSettings() {
             let encryptionType = this.encryptionType;
             let ckSlidesEnabled = this.ckSlidesEnabled;
-
+            
             if (encryptionType != undefined) {
-                localStorage.setItem("encryptionType", encryptionType);
+                if(this.encryptionType != encryptionType){
+                 this.convertEncryptions(this.encryptionType, encryptionType);
+                 store.commit('setEncryptionType', encryptionType);
+                }     
             }
 
             if (ckSlidesEnabled != undefined) {
-                localStorage.setItem("slidesEnabled", ckSlidesEnabled);
+                store.commit('setSlidesEnabled', ckSlidesEnabled);
             }
+
+            store.commit('updateUserData');
         },
         setEncryptionType(){
             var e = document.getElementById("lbET");

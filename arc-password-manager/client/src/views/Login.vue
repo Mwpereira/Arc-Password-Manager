@@ -59,14 +59,16 @@ export default {
                 try {
                     if (localStorage.getItem(username) != null) {
                         if (await bcrypt.compare(password, localStorage.getItem(username))) {
-                            let encryptedData = localStorage.getItem("$data."+username);
-                            let arcData = CryptoJS.AES.decrypt(encryptedData, password).toString(CryptoJS.enc.Utf8);
-                            
-                            arcData = arcData.split(",");
-                            arcData[1] = arcData[1]+password;
+                            let decUserData = CryptoJS.AES.decrypt(localStorage.getItem("$data."+username), password).toString(CryptoJS.enc.Utf8);
+                            let arcData = JSON.parse(decUserData);
 
-                            sessionStorage.setItem("$data."+username, arcData);
+                            arcData.passPhrase = CryptoJS.AES.decrypt(arcData.passPhrase, password).toString(CryptoJS.enc.Utf8)+password;
+                            arcData.encryptionType =  CryptoJS.AES.decrypt(arcData.encryptionType, password).toString(CryptoJS.enc.Utf8);
+                            arcData.slidesEnabled = CryptoJS.AES.decrypt(arcData.slidesEnabled, password).toString(CryptoJS.enc.Utf8);
+                            
+                            sessionStorage.setItem("$data."+username, JSON.stringify(arcData));
                             sessionStorage.setItem("user", username);
+                            sessionStorage.setItem("arcLoaded", "false");
 
                             if (arcData[3] == "false") {
                                 this.$router.push("/main/home");

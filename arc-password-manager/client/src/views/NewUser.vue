@@ -1,35 +1,26 @@
 <template>
 	<div class="newUser">
-
 		<h1 style="color:black; margin-top: 3rem;">Arc</h1>
-
         <span class="slideshow-container">
-
             <input class="close-btn" value="X" type="button" onclick="javascript:location.href='/main/home'" />
-		
             <span class="images fade">
 			<img src="../assets/padlock.png" style="width:100%" />
 			<div class="text">Advanced libraries and alogirthms used to keep your accounts and data safe, with your access only.</div>
             </span>
-
             <span class="images fade">
 			<img src="../assets/antivirus.png" style="width:100%" />
 			<div class="text">No external traffic exported from the software, with 100% encryption and security.</div>
             </span>
-
             <span class="images fade">
 			<img src="../assets/encryption.png" style="width:100%;" />
 			<div class="text">Choose your choice of encryption to protect your data and make it extra secure for your insurance.</div>
             </span>
-        
         </span>
 		<br>
-
         <form @submit.prevent="plusSlides">
 			<a class="prev" v-on:click="plusSlides(-1)">&#10094;</a>
 			<a class="next" v-on:click="plusSlides(+1)">&#10095;</a>
 		</form>
-
         <form @submit.prevent="currentSlide">
         <span class="dots-display">
 		<span class="dot" v-on:click="currentSlide(1)"></span>
@@ -37,7 +28,6 @@
 		<span class="dot" v-on:click="currentSlide(3)"></span>   
         </span>
         </form> 
-
 	</div>
 </template>
 

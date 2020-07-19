@@ -83,16 +83,18 @@ export default {
                             passPhrase += charset.charAt(Math.floor(Math.random() * n));
                         }
 
-                        let userData = [];
-                        userData.push([]);
-                        userData.push(passPhrase);
-                        userData.push("AES");
-                        userData.push("true");
+                        let userData = {
+                            accounts: [],
+                            passPhrase: CryptoJS.AES.encrypt(passPhrase, password).toString(),
+                            encryptionType: CryptoJS.AES.encrypt("AES", password).toString(),
+                            slidesEnabled: CryptoJS.AES.encrypt("true", password).toString()
+                        }
 
-                        userData = CryptoJS.AES.encrypt(userData.toString(), password).toString();
-                        
                         localStorage.setItem(username, hashedPassword);
-                        localStorage.setItem(("$data."+username),userData);                        
+
+                        let encUserData  = CryptoJS.AES.encrypt(JSON.stringify(userData), password).toString();
+
+                        localStorage.setItem(("$data."+username), encUserData);                        
 
                         window.location.href = "/login";
 

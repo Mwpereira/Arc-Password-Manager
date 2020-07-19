@@ -17,21 +17,15 @@ export default new Vuex.Store({
     user: "",
   },
   mutations: {
-    accounts(state, payload){
-      state.accounts = payload;
-      sessionStorage.setItem("accounts", payload);
-      sessionStorage.setItem("payload", payload);
-      sessionStorage.setItem("stateAccounts", JSON.stringify(state.accounts));    
-    },
     addAccount(state, payload){
       state.accounts.push(payload);
+      state.accounts.sort();
     },
     clearForm(state){
       state.accounts = "";
     },
     deleteAccount(state, payload){
       state.accounts.splice(payload,1);
-      sessionStorage.setItem("$data."+state.user, JSON.stringify(state.accounts));
     },
     editForm(){
       Home.methods.editForm();
@@ -48,8 +42,11 @@ export default new Vuex.Store({
       }
     },
     loadAccounts(state){
-      let accounts = JSON.parse(sessionStorage.getItem("accounts"));
+      let accounts = this.accounts;
       if(accounts != null) {state.accounts = accounts}
+    },
+    setAccounts(state, payload){
+      state.accounts = payload;
     },
     setEncryptionType(state, payload){
       state.encryptionType = payload;
@@ -65,23 +62,29 @@ export default new Vuex.Store({
     },
     updateAccount(state, payload){
       state.accounts.splice(payload.index, 1, payload.accountUpdated);
-      Accounts.methods.updateAccounts();
     },
     updateUserData(state){
-      let localData = [];
-      localData.push(state.accounts);
-      localData.push(state.passPhrase.substring(0, 33));
-      localData.push(state.encryptionType);
-      localData.push(state.slidesEnabled);
-      CryptoJS.AES.encrypt(localData, state.passPhrase).toString();
-      localStorage.setItem("$data."+state.user, localData);
+      let localAccounts = state.accounts;
+      sessionStorage.setItem("$accounts."+state.user, JSON.stringify(state.accounts));
+      let newPassPhrase = state.passPhrase.substring(0, 32);
+      let password = state.passPhrase.substring(32, state.passPhrase.length);
+      let localPassPhrase = CryptoJS.AES.encrypt(newPassPhrase, password).toString();
+      let localEncryptionType = CryptoJS.AES.encrypt(state.encryptionType, password).toString();
+      let localSlidesEnabled = CryptoJS.AES.encrypt(state.slidesEnabled, password).toString();
+
+      let arcData = {
+        accounts: localAccounts,
+        passPhrase: localPassPhrase,
+        encryptionType: localEncryptionType,
+        slidesEnabled: localSlidesEnabled
+      }
+      
+      localStorage.setItem("$data."+state.user, CryptoJS.AES.encrypt(JSON.stringify(arcData), password).toString());
+
       Accounts.methods.updateAccounts();
     }
   },
   actions: {
-    accounts(state, payload){
-      state.commit('accounts', payload);
-    },
     addAccount(state, payload){
       state.commit('addAccount', payload);
     },
@@ -99,6 +102,9 @@ export default new Vuex.Store({
     },
     loadAccounts(state){
       state.commit('loadAccounts');
+    },
+    setAccounts(state, payload){
+      state.commit("setAccounts", payload);
     },
     setEncryptionType(state, payload){
       state.commit('setEncryptionTime', payload);
