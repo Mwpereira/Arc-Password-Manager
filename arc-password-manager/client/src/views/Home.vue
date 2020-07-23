@@ -189,7 +189,7 @@ h3 {
 }
 
 .userClass {
-	width: 90vh;
+	width: 75vh;
 	background: rgba(119, 119, 119, 0.05);
 }
 
@@ -262,7 +262,7 @@ h2.vpnLink:hover {
 	text-align: center;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1500px) {
 	.userClass {
 		display: none;
 	}

@@ -4,7 +4,7 @@
 			<h1 id="lblAccounts">Accounts</h1>
 			<li v-for="account in accounts" :key="account.accountName">
 				<span class="listValue">
-					<img id="logo" :src="loadLogo(account.accountName)" />
+					<img id="logo" :src="loadLogo(account.accountName)" @error="imgUrlAlt" />
 					<h2 @click="loadForm(account.accountName)">
 						{{ account.accountName }}
 					</h2>
@@ -32,17 +32,14 @@ export default {
 	methods: {
 		loadLogo(elem) {
 			try {
-				var src;
-				src = '//logo.clearbit.com/' + elem + '.com';
-
-				if (src == undefined || src == '') {
-					src = '../assets/error.png';
-				}
-				return src;
+				return '//logo.clearbit.com/' + elem + '.com';
 			} catch (error) {
 				console.log(error);
 				return '../assets/error.png';
 			}
+		},
+		imgUrlAlt(event) {
+			event.target.src = `https://img.icons8.com/flat_round/64/000000/question-mark.png`;
 		},
 		loadForm(elem) {
 			store.commit('loadForm', elem);
@@ -100,13 +97,6 @@ export default {
 
 			sessionStorage.setItem('arcAccounts', 'true');
 		}
-
-		/*if(accountsList.length > 12){
-                document.getElementsByClassName("listAccounts")[0].style.overflow = "scroll";
-            }
-            else{
-                document.getElementsByClassName("listAccounts")[0].style.overflow = "hidden";
-            }*/
 	},
 };
 </script>
@@ -172,8 +162,8 @@ a {
 }
 
 #logo {
-	width: 32px;
-	height: 32px;
+	width: 30px;
+	height: 30px;
 	margin-right: 15px;
 	border: none;
 	border-radius: 100px;
