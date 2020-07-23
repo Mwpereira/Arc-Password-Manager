@@ -4,30 +4,30 @@
 		<h1>Arc</h1>
 		<p>Created By: Michael Pereira</p>
 		<p>Version: 1.0.0</p>
-		<span @submit.prevent="openLink">
-		<button type="submit" style="border: 0; background: transparent; outline: none;" @click="openLink('https://www.linkedin.com/in/michael-pereira-0237a0193/')" >
-            <img class="btns" src="../assets/linkedin.png" alt="submit" />
-        </button>
-		<button type="submit" style="border: 0; background: transparent; outline: none;" @click="openLink('https://github.com/Mwpereira')">
-            <img class="btns" src="../assets/github.png" alt="submit" />
-        </button>	
-	</span>
+		<span>
+			<button type="button" style="border: 0; background: transparent; outline: none;" @click="openLink('https://www.linkedin.com/in/michael-pereira-0237a0193/')">
+				<img class="btns" src="../assets/linkedin.png" alt="submit" />
+			</button>
+			<button type="button" style="border: 0; background: transparent; outline: none;" @click="openLink('https://github.com/Mwpereira')">
+				<img class="btns" src="../assets/github.png" alt="submit" />
+			</button>
+		</span>
 	</div>
 </template>
 
 <script>
 export default {
-	name: "Information",
-    data: () => {
-        return{
-            url: '',
-        }
+	name: 'Information',
+	data: () => {
+		return {
+			url: '',
+		};
 	},
 	methods: {
-    openLink(url) {
-        window.open(url);
-    }
-    }
+		openLink(url) {
+			window.open(url);
+		},
+	},
 };
 </script>
 
@@ -59,7 +59,7 @@ img {
 	cursor: pointer;
 }
 
-.btns{
+.btns {
 	padding-right: 0.5rem;
 	padding-left: 0.5rem;
 }

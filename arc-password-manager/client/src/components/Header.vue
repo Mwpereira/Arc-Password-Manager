@@ -4,11 +4,11 @@
 			<img class="logo" src="../assets/logo.png" />
 			<h1>Arc</h1>
 		</span>
-        <h2>Home</h2>
-		<span @submit.prevent="pageSwitch">
-			<img class="pageBtns" src="../assets/home.png"  v-on:click="pageSwitch('Home')">
+		<h2>Home</h2>
+		<span>
+			<img class="pageBtns" src="../assets/home.png" v-on:click="pageSwitch('Home')" />
 			<img class="pageBtns" src="../assets/i.png" v-on:click="pageSwitch('Information')" />
-			<img class="pageBtns" id="settings" src="../assets/settings.png" v-on:click="pageSwitch('Settings')" />	
+			<img class="pageBtns" id="settings" src="../assets/settings.png" v-on:click="pageSwitch('Settings')" />
 		</span>
 	</div>
 </template>
@@ -16,24 +16,18 @@
 <script>
 export default {
 	name: 'Header',
-	components: {  },
-	data: () => {
-        return {
-            saltLevel: "",
-            adEnabled: "",
-        };
-    },
-    methods: {
-        pageSwitch(p){
-			var title = document.getElementsByTagName("h2")[0];
-			if (p != title.innerText){
+	components: {},
+	methods: {
+		pageSwitch(p) {
+			var title = document.getElementsByTagName('h2')[0];
+			if (p != title.innerText) {
 				title.innerText = p;
 				this.$router.push(`${p}`);
-			}	
+			}
 		},
 	},
-	mounted(){},
-	}
+	mounted() {},
+};
 </script>
 
 <style scoped>
@@ -47,9 +41,9 @@ div {
 	align-items: center;
 	text-align: center;
 	border-bottom: 3px solid;
-    border-image-slice: 1;
-    border-width: 5px;
-    border-image-source: linear-gradient(to left, #ff9d00, #3ab1d5);
+	border-image-slice: 1;
+	border-width: 5px;
+	border-image-source: linear-gradient(to left, #ff9d00, #3ab1d5);
 	height: 8.5vh;
 }
 
@@ -64,14 +58,14 @@ h1 {
 	cursor: default;
 }
 
-h2{
-    font-family: 'Varela Round', sans-serif;
+h2 {
+	font-family: 'Varela Round', sans-serif;
 	font-size: 30px;
 	cursor: default;
-    margin-top: 0.5rem;
+	margin-top: 0.5rem;
 }
 
-.menu{
+.menu {
 	background-color: white;
 }
 
@@ -89,11 +83,11 @@ h2{
 	margin-top: 0.2rem;
 }
 
-.pageBtns:hover{
-	transform: scale(1.1,1.1);
+.pageBtns:hover {
+	transform: scale(1.1, 1.1);
 }
 
-#settings{
+#settings {
 	margin-right: 0.5rem;
 }
 </style>

@@ -23,9 +23,9 @@ Vue.use(VueRouter)
       component: () => import("../views/Signup.vue"),
     },
     {
-      path: "/newuser",
-      name: "NewUser",
-      component: () => import("../views/NewUser.vue"),
+      path: "/arcslides",
+      name: "ArcSlides",
+      component: () => import("../views/ArcSlides.vue"),
     },
     {
       path: "/main",

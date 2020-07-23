@@ -13,8 +13,7 @@
 </template>
 
 <script>
-export default { 
-}
+export default {};
 </script>
 
 <style scoped>
@@ -24,7 +23,7 @@ div {
 	height: 100%;
 }
 
-span{
+span {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
@@ -37,14 +36,14 @@ h2 {
 	font-style: italic;
 	font-weight: bold;
 	height: 4rem;
-	color: #15202B;
+	color: #15202b;
 	font-family: 'Bitter';
 	cursor: default;
 	align-items: center;
 	text-align: center;
 }
 
-.action-btn{
+.action-btn {
 	color: white;
 	justify-content: center;
 	border: none;
@@ -60,8 +59,8 @@ h2 {
 	background: linear-gradient(to right, rgb(255, 217, 0), rgb(255, 179, 0));
 }
 
-.action-btn:hover{
-    transform: scale(1.1,1.1);
+.action-btn:hover {
+	transform: scale(1.1, 1.1);
 }
 
 .logo {
@@ -76,12 +75,12 @@ h2 {
 	font-size: 20px;
 }
 
-#co{
+#co {
 	margin-top: 20vh;
 	margin-bottom: 5vh;
 }
 
-#btns{
+#btns {
 	margin-top: 5vh;
 	margin-bottom: 5vh;
 }

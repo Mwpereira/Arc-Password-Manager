@@ -1,4 +1,3 @@
-import Accounts from "@/components/Accounts";
 import CryptoJS from "crypto-js";
 import Home from "@/views/Home";
 import LoadForm from "@/components/LoadForm";
@@ -10,22 +9,31 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     account: "",
+    accountNames: [],
     accounts: [],
+    component: "",
     encryptionType: "",
+    location: "",
     passPhrase: "",
+    publicIP: "",
     slidesEnabled: "",
     user: "",
   },
   mutations: {
     addAccount(state, payload){
       state.accounts.push(payload);
-      state.accounts.sort();
+    },
+    addAccountName(state, payload){
+      state.accountNames.push({accountName: payload});
     },
     clearForm(state){
       state.accounts = "";
     },
     deleteAccount(state, payload){
       state.accounts.splice(payload,1);
+    },
+    deleteAccountName(state, payload){
+      state.accountNames.splice(payload,1);
     },
     editForm(){
       Home.methods.editForm();
@@ -41,18 +49,26 @@ export default new Vuex.Store({
         LoadForm.methods.loadAccount();  
       }
     },
-    loadAccounts(state){
-      let accounts = this.accounts;
-      if(accounts != null) {state.accounts = accounts}
+    setAccountNames(state, payload){
+      state.accountName = payload;
     },
     setAccounts(state, payload){
       state.accounts = payload;
     },
+    setComponent(state, payload){
+      state.component = payload;
+    },
     setEncryptionType(state, payload){
       state.encryptionType = payload;
     },
+    setLocation(state, payload){
+      state.location = payload;
+    },
     setPassPhrase(state, payload){
       state.passPhrase = payload;
+    },
+    setPublicIP(state, payload){
+      state.publicIP = payload;
     },
     setSlidesEnabled(state, payload){
       state.slidesEnabled = payload;
@@ -62,10 +78,10 @@ export default new Vuex.Store({
     },
     updateAccount(state, payload){
       state.accounts.splice(payload.index, 1, payload.accountUpdated);
+      state.accountNames.splice(payload.index, 1, { accountName: payload.accountName});
     },
     updateUserData(state){
       let localAccounts = state.accounts;
-      sessionStorage.setItem("$accounts."+state.user, JSON.stringify(state.accounts));
       let newPassPhrase = state.passPhrase.substring(0, 32);
       let password = state.passPhrase.substring(32, state.passPhrase.length);
       let localPassPhrase = CryptoJS.AES.encrypt(newPassPhrase, password).toString();
@@ -80,13 +96,14 @@ export default new Vuex.Store({
       }
       
       localStorage.setItem("$data."+state.user, CryptoJS.AES.encrypt(JSON.stringify(arcData), password).toString());
-
-      Accounts.methods.updateAccounts();
     }
   },
   actions: {
     addAccount(state, payload){
       state.commit('addAccount', payload);
+    },
+    addAccountName(state, payload){
+      state.commit('addAccountName', payload);
     },
     clearForm(state){
       state.commit('clearForm');
@@ -94,23 +111,35 @@ export default new Vuex.Store({
     deleteAccount(state, payload){
       state.commit('deleteAccount', payload);
     },
+    deleteAccountName(state, payload){
+      state.commit('deleteAccountName', payload);
+    },
     editForm(state){
       state.commit('editForm');
-    },
-    loadForm(state, payload){
-      state.commit('loadAccount', payload);
     },
     loadAccounts(state){
       state.commit('loadAccounts');
     },
+    setAccountNames(state, payload){
+      state.commit("setAccountNames", payload);
+    },
     setAccounts(state, payload){
       state.commit("setAccounts", payload);
+    },
+    setComponent(state, payload){
+      state.commit('setComponent', payload);
     },
     setEncryptionType(state, payload){
       state.commit('setEncryptionTime', payload);
     },
+    setLocation(state, payload){
+      state.commit('setLocation', payload);
+    },
     setPassPhrase(state, payload){
       state.commit('setPassPhrase', payload);
+    },
+    setPublicIP(state, payload){
+      state.commit('setPublicIP', payload);
     },
     setSlidesEnabled(state, payload){
       state.commit('setSlidesEnabled', payload);
@@ -123,11 +152,17 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    accountNames(state){
+      return state.accountNames;
+    },
     accounts(state){
       return state.accounts;
     },
     addAccount(state){
       return state.accounts;
+    },
+    component(state){
+      return state.component;
     },
     encryptionType(state){
       return state.encryptionType;
@@ -135,8 +170,14 @@ export default new Vuex.Store({
     loadForm(state){
       return state.account;
     },
+    location(state){
+      return state.location;
+    },
     passPhrase(state){
       return state.passPhrase;
+    },
+    publicIP(state){
+      return state.publicIP;
     },
     slidesEnabled(state){
       return state.slidesEnabled;
