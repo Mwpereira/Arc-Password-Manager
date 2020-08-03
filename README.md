@@ -2,14 +2,14 @@
 
 A secure, advanced, and customizable password vault. 
 
-1. Project Setup
+## Project Setup
 	```
 	git clone https://github.com/Mwpereira/Arc-Password-Manager.git
 	cd Arc-Password-Manager
 	npm install
 	```
 
-2. Developing
+## Developing
 
 	Using a Web Browser Build
 	```
@@ -17,7 +17,12 @@ A secure, advanced, and customizable password vault.
 	```
 	or
 
-	Using an Application Build
+	Using a Desktop Application Build
 	```
 	npm run electron:serve
 	```
+
+## Frameworks
+
+	* Vue.js for building user interfaces and connecting Javascript code.
+	* Electron for the development of desktop GUI by combining the Chromium rendering engine and the Node.js runtime.
