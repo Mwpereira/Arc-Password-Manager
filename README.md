@@ -1,4 +1,4 @@
-# 🛡 Arc-Password-Manager
+# 🛡 Arc Password Manager
 
 A secure, advanced, and customizable password vault. 
 
