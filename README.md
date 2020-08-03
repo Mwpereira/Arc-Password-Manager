@@ -25,7 +25,7 @@ npm run electron:serve
 ## 📚 Frameworks
 
 * *Vue.js* for building user interfaces and connecting Javascript code
-* *Electron* for the development of desktop GUI by combining the Chromium rendering engine and the Node.js runtime
+* *Electron* for the development of cross-platform desktop GUI applications
 
 ## 🔐 Back-End
 
