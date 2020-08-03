@@ -1,5 +1,7 @@
 # 🛡 Arc-Password-Manager
 
+A secure, advanced, and customizable password vault. 
+
 1. Project Setup
 	```
 	git clone https://github.com/Mwpereira/Arc-Password-Manager.git
