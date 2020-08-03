@@ -203,8 +203,8 @@ export default {
 					store.commit('updateUserData');
 					this.exit();
 				}
-			} catch (e) {
-				console.log(e);
+			} catch (error) {
+				console.log(error);
 			}
 		},
 	},
