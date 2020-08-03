@@ -2,7 +2,7 @@
 
 1. Project Setup
 ```
-git clone
+git clone https://github.com/Mwpereira/Arc-Password-Manager.git
 npm install
 ```
 
