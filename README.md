@@ -1,4 +1,4 @@
-# arc-password-manager
+# Arc-Password-Manager
 
 ## Project setup
 ```
