@@ -1,24 +1,21 @@
-# Arc-Password-Manager
+# 🛡 Arc-Password-Manager
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+    ### 1. Project Setup
+    ```
+    git clone
+    npm install
+    ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+    ### 2. Developing
+    
+    Using a Web Browser Build
+    ```
+    npm run serve
+    ```
+    or
+    
+    Using an Application Build
+    ```
+    npm run electron:serve
+    ```
