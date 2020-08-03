@@ -1,21 +1,20 @@
 # 🛡 Arc-Password-Manager
 
+1. Project Setup
+```
+git clone
+npm install
+```
 
-    ### 1. Project Setup
-    ```
-    git clone
-    npm install
-    ```
-
-    ### 2. Developing
+2. Developing
+   
+Using a Web Browser Build
+```
+npm run serve
+```
+or
     
-    Using a Web Browser Build
-    ```
-    npm run serve
-    ```
-    or
-    
-    Using an Application Build
-    ```
-    npm run electron:serve
-    ```
+Using an Application Build
+```
+npm run electron:serve
+```
