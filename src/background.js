@@ -16,8 +16,9 @@ protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({ width: 900, height: 700, minWidth: 900, minHeight: 755, webPreferences: {
+  win = new BrowserWindow({ width: 900, height: 700, minWidth: 900, minHeight: 755, title: "Arc Password Manager", webPreferences: {
     nodeIntegration: true,
+    nodeIntegrationInWorker: true,
     devTools: false
   } })
 

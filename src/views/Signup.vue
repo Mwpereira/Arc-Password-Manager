@@ -10,7 +10,7 @@
 			<input type="submit" class="action-btn" id="register" value="Register" />
 		</form>
 		<span id="loginItems">
-			<label id="loginArc-label">Already created an account? <a id="loginArc-btn" value="Login" onclick="javascript:location.href='/login'">Login</a></label>
+			<label id="loginArc-label">Already created an account? <a id="loginArc-btn" value="Login" v-on:click="pageSwitch('login')">Login</a></label>
 		</span>
 		<span id="errorMessage">
 			<p class="signup-error-message" v-if="errorMessage != ''">
@@ -86,6 +86,9 @@ export default {
 				this.errorMessage = 'Signup Error';
 				console.log(error);
 			}
+		},
+		pageSwitch(p) {
+			this.$router.push(`${p}`);
 		},
 	},
 };

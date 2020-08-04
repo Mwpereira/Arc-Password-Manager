@@ -2,7 +2,7 @@
 	<div class="newUser">
 		<h1 style="color:black; margin-top: 3rem;">Arc</h1>
 		<span class="slideshow-container">
-			<input class="close-btn" value="X" type="button" onclick="javascript:location.href='/main/home'" />
+			<input class="close-btn" value="X" type="button" v-on:click="pageSwitch('main/home')" />
 			<span class="images fade">
 				<img src="../assets/padlock.png" style="width:100%" />
 				<div class="text">Advanced libraries and alogirthms used to keep your accounts and data safe, with your access only.</div>
@@ -64,6 +64,9 @@ export default {
 			}
 			slides[slideIndex - 1].style.display = 'block';
 			dots[slideIndex - 1].className += ' active';
+		},
+		pageSwitch(p) {
+			this.$router.push(`${p}`);
 		},
 	},
 	mounted() {
