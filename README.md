@@ -11,15 +11,16 @@ npm install
 
 ## 🖥 Developing
 
-Develop using a Web Browser Build
-```
-npm run serve
-```
-or
-
 Develop using a Desktop Application *(Recommended)*
 ```
 npm run electron:serve
+```
+
+or
+
+Develop using a Web Browser Build
+```
+npm run serve
 ```
 
 ## 📚 Frameworks
