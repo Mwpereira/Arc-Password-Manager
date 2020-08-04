@@ -74,7 +74,8 @@ export default {
 
 							localStorage.setItem('$data.' + username, encUserData);
 
-							window.location.href = '/login';
+							this.pageSwitch('login');
+
 						} else if (password.localeCompare(confirmpassword) != 0) {
 							this.errorMessage = 'Passwords Do Not Match';
 						} else {

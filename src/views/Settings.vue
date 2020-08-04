@@ -20,7 +20,7 @@
 			<input class="main-btn" id="deleteBtn" type="button" value="Delete Current User Data" @click="deleteUserData" />
 			<input class="main-btn" id="deleteArcBtn" type="button" value="Delete Data" @click="deleteArcData" />
 		</span>
-		<label id="lblDefault">Action Cannot Be Undone (App Will Exit)</label>
+		<label id="lblDefault">Action Cannot Be Undone (You Will Be Signed Out)</label>
 		<span class="buttons">
 			<input class="main-btn" id="formBtns" type="submit" value="Save" v-on:click="saveSettings" />
 			<input class="main-btn" id="formBtns" type="submit" value="Cancel" v-on:click="loadSettings" />
@@ -74,16 +74,13 @@ export default {
 		},
 		deleteArcData() {
 			localStorage.clear();
-			const remote = require('electron').remote;
-			let w = remote.getCurrentWindow();
-			w.close();
+			sessionStorage.clear();
+			this.$router.push(`${'/'}`);
 		},
 		deleteUserData() {
 			localStorage.removeItem('$data.' + store.getters.user);
 			localStorage.removeItem(store.getters.user);
-			const remote = require('electron').remote;
-			let w = remote.getCurrentWindow();
-			w.close();
+			this.$router.push(`${'/'}`);
 		},
 		encrypt(text, passPhrase, encryptionType) {
 			if (encryptionType == 'AES') {
