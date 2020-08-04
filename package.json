@@ -16,7 +16,6 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
-    "clearbit": "^1.3.5",
     "core-js": "^3.6.5",
     "crypto-js": "^4.0.0",
     "cryptojs": "^2.5.3",
