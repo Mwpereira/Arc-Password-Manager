@@ -11,13 +11,13 @@ npm install
 
 ## 🖥 Developing
 
-Using a Web Browser Build
+Develop using a Web Browser Build
 ```
 npm run serve
 ```
 or
 
-Using a Desktop Application Build
+Develop using a Desktop Application
 ```
 npm run electron:serve
 ```
