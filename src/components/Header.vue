@@ -21,7 +21,7 @@ export default {
 		pageSwitch(p) {
 			var title = document.getElementsByTagName('h2')[0];
 			if (p != title.innerText) {
-				title.innerText = p;
+				title.innerText = p.charAt(0).toUpperCase() + p.slice(1);
 				this.$router.push(`${p}`);
 			}
 		},

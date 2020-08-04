@@ -32,7 +32,7 @@ export default {
 	methods: {
 		loadLogo(elem) {
 			try {
-				return '//logo.clearbit.com/' + elem + '.com';
+				return 'http://logo.clearbit.com/' + elem + '.com';
 			} catch (error) {
 				console.log(error);
 				return '../assets/error.png';
