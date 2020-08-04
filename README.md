@@ -11,21 +11,21 @@ npm install
 
 ## 🖥 Developing
 
-Using a Web Browser Build
+Develop using a Web Browser Build
 ```
 npm run serve
 ```
 or
 
-Using a Desktop Application Build
+Develop using a Desktop Application
 ```
 npm run electron:serve
 ```
 
 ## 📚 Frameworks
 
-* *Vue.js* for building user interfaces and connecting Javascript code
-* *Electron* for the development of cross-platform desktop GUI applications
+* *Vue.js* - for building user interfaces and connecting Javascript code
+* *Electron* - for the development of cross-platform desktop GUI applications
 
 ## 🔐 Back-End
 
