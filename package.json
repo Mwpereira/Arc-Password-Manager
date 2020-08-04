@@ -2,6 +2,7 @@
   "name": "arc-password-manager",
   "version": "1.0.0",
   "private": true,
+  "description": "A secure, advanced, and customizable password vault",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
