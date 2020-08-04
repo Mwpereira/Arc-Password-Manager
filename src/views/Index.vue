@@ -6,14 +6,23 @@
 		</span>
 		<h2>Keep Yourself Safe.<br />Secure, Advanced, and Customizable Software at Your Service.</h2>
 		<span id="btns">
-			<input class="action-btn" id="login" value="Login" type="submit" onclick="javascript:location.href='/login'" />
-			<input class="action-btn" id="signup" value="Sign up" type="submit" onclick="javascript:location.href='/signup'" />
+			<input class="action-btn" id="login" value="Login" type="submit" v-on:click="pageSwitch('login')" />
+			<input class="action-btn" id="signup" value="Sign up" type="submit" v-on:click="pageSwitch('signup')" />
 		</span>
 	</div>
 </template>
 
 <script>
-export default {};
+export default {
+	name: 'Index',
+	components: {},
+	methods: {
+		pageSwitch(p) {
+			this.$router.push(`${p}`);
+		},
+	},
+};
+
 </script>
 
 <style scoped>

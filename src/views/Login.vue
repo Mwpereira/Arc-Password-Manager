@@ -8,7 +8,7 @@
 			</span>
 			<input type="submit" class="action-btn" id="login" value="Login" />
 			<span id="signupItems">
-				<label id="signupArc-label">Need to create an account? <a id="signupArc-btn" onclick="javascript:location.href='/signup'">Sign up</a></label>
+				<label id="signupArc-label">Need to create an account? <a id="signupArc-btn" v-on:click="pageSwitch('signup')">Sign up</a></label>
 			</span>
 			<span id="errorMessage">
 				<p class="login-error-message" v-if="errorMessage != ''">
@@ -72,6 +72,9 @@ export default {
 					console.log(error);
 				}
 			}
+		},
+		pageSwitch(p) {
+			this.$router.push(`${p}`);
 		},
 	},
 };
