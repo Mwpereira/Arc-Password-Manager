@@ -6,9 +6,9 @@
 		</span>
 		<h2>Home</h2>
 		<span>
-			<img class="pageBtns" src="../assets/home.png" v-on:click="pageSwitch('Home')" />
-			<img class="pageBtns" src="../assets/i.png" v-on:click="pageSwitch('Information')" />
-			<img class="pageBtns" id="settings" src="../assets/settings.png" v-on:click="pageSwitch('Settings')" />
+			<img class="pageBtns" src="../assets/home.png" v-on:click="pageSwitch('home')" />
+			<img class="pageBtns" src="../assets/i.png" v-on:click="pageSwitch('information')" />
+			<img class="pageBtns" id="settings" src="../assets/settings.png" v-on:click="pageSwitch('settings')" />
 		</span>
 	</div>
 </template>
