@@ -1,6 +1,6 @@
 # 🛡 Arc Password Manager
 
-A secure, advanced, and customizable password vault. 
+A secure, advanced, and customizable password vault. Cross-platform software making accessibility an ease across Windows, Linux, Mac OS, as well as web browser capability. 
 
 ## 📐 Project Setup
 ```
@@ -17,7 +17,7 @@ npm run serve
 ```
 or
 
-Develop using a Desktop Application
+Develop using a Desktop Application *(Recommended)*
 ```
 npm run electron:serve
 ```
