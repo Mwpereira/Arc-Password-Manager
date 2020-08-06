@@ -15,15 +15,16 @@
 			<input type="checkbox" id="cbSlides" value="Enabled" v-model="ckSlidesEnabled" />
 			<label for="cbSlides" id="lblSlides">Enabled</label>
 		</span>
-		<span class="dAD">
+		<span class="deleteArcData">
 			<h2 id="lbldAD">Delete All Arc Data</h2>
-			<input class="main-btn" id="deleteBtn" type="button" value="Delete Current User Data" @click="deleteUserData" />
-			<input class="main-btn" id="deleteArcBtn" type="button" value="Delete Data" @click="deleteArcData" />
+			<label id="deleteBtn" @click="deleteUserData">Delete User Data</label>
+			<label id="deleteArcBtn" @click="deleteArcData">Delete All Arc Data</label>
 		</span>
 		<label id="lblDefault">Action Cannot Be Undone (You Will Be Signed Out)</label>
 		<span class="buttons">
 			<input class="main-btn" id="formBtns" type="submit" value="Save" v-on:click="saveSettings" />
-			<input class="main-btn" id="formBtns" type="submit" value="Cancel" v-on:click="loadSettings" />
+			<input class="main-btn" id="formBtns" type="submit" value="Cancel" v-on:click="cancelSettings" />
+			<label id="msg"></label>
 		</span>
 	</div>
 </template>
@@ -41,6 +42,10 @@ export default {
 		};
 	},
 	methods: {
+		cancelSettings(){
+			document.getElementById('msg').innerHTML = "Changes Cancelled!";
+			this.loadSettings();
+		},
 		convertEncryptions(fromEncryption, toEncryption) {
 			if (fromEncryption != toEncryption) {
 				let accounts = store.getters.accounts;
@@ -124,6 +129,8 @@ export default {
 			}
 
 			store.commit('updateUserData');
+
+			document.getElementById('msg').innerHTML = "Changes Saved!";
 		},
 		setEncryptionType() {
 			var e = document.getElementById('lbET');
@@ -177,9 +184,11 @@ p {
 	flex-direction: row;
 }
 
-.dAD {
+.deleteArcData {
 	display: flex;
 	flex-direction: row;
+	text-align: center;
+	align-items: center;
 }
 
 .main-btn {
@@ -227,18 +236,66 @@ p {
 #deleteBtn {
 	margin-left: 1rem;
 	height: 30px;
-	width: 250px;
+	width: 175px;
+	color: blue;	
+	font-style: italic;
+	font-weight: 700;
+	cursor: pointer;
 }
 
 #deleteArcBtn {
 	margin-left: 1rem;
 	height: 30px;
-	width: 150px;
+	width: 175px;
+	color: blue;
+	font-style: italic;
+	font-weight: 700;
+	cursor: pointer;
 }
 
 #formBtns {
 	background-color: white;
 	width: 175px;
 	height: 50px;
+}
+
+#formBtns:hover{
+	background-color: whitesmoke;
+}
+
+#msg{
+	color: black;
+	font-style: italic;
+	margin: 50px;
+	animation: fadeIn ease 5s;
+	-webkit-animation: fadeIn ease 5s;
+	-moz-animation: fadeIn ease 5s;
+	-o-animation: fadeIn ease 5s;
+	-ms-animation: fadeIn ease 5s;
+}
+
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
 }
 </style>
