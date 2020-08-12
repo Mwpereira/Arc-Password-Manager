@@ -43,4 +43,8 @@ npm run serve
   
 ## 📷 Screenshots
 
-![Alt text](/build/screenshots/Arc.png?raw=true "Arc")
+<img src="/build/screenshots/Arc.PNG" width="500x50">
+<img src="/build/screenshots/Login.PNG" width="500x50">
+<img src="/build/screenshots/Signup.PNG" width="500x50">
+<img src="/build/screenshots/Home.PNG" width="500x50">
+
