@@ -43,4 +43,4 @@ npm run serve
   
 ## 📷 Screenshots
 
-![Alt text](/build/screenshots/Arc.png?raw=true "Optional Title")
+![Alt text](/build/screenshots/Arc.png?raw=true "Arc")
