@@ -40,3 +40,7 @@ npm run serve
   ### Dependencies
   
   * *axios* - for the promise based HTTP client to handle requests
+  
+## 📷 Screenshots
+
+![Alt text](/build/screenshots/Arc.png?raw=true "Optional Title")
