@@ -1,5 +1,7 @@
 # 🛡 Arc Password Manager
 
+### No longer supported, see [Arc 2.0](https://github.com/Mwpereira/Arc)
+
 A secure, advanced, and customizable password vault. Keep your accounts and data safe by storing your account information locally on your system while being heavily encrypted. Never worry about forgetting an account's details ever again thanks to Arc. This cross-platform software makes accessibility an ease across Windows, Linux, Mac OS, as well as web browser capability. 
 
 ## 📐 Project Setup
